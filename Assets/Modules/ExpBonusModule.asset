@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4fcbc5e4cfd604cbee45734991629c, type: 3}
-  m_Name: HpModule_1
+  m_Script: {fileID: 11500000, guid: 044ac11490e039e46ae2730db10727b2, type: 3}
+  m_Name: ExpBonusModule
   m_EditorClassIdentifier: 
-  name: Health UP module
-  description: Increase player's health
-  icon: {fileID: 21300000, guid: f90b2d116d4d542428b8573b0f92830b, type: 3}
-  typeOfBonusText: Hp bonus
+  name: Bonus expirence module
+  description: Increase player's claimed expirence
+  icon: {fileID: 21300000, guid: 865b05d3786bfd2479ef97683d07b5b7, type: 3}
+  typeOfBonusText: Exp gain bonus
   totalBonus: 0
   currentBonus: 0
-  healthPerLevel: 1
+  expGainBonus: 0.1

@@ -17,5 +17,5 @@ public class HpModule : Module
         player.healthBar.SetHealth(player.playerCurrentHealth);
     }
 
-    public override string GetBonusText(int level) => (healthPerLevel * level).ToString() + "HP";
+    public override string GetBonusText(int level) => (healthPerLevel * level).ToString();
 }

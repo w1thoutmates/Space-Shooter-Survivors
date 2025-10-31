@@ -6,7 +6,7 @@ public class MedkitPickup : MonoBehaviour, IPickable
     
     void Start()
     {
-        
+        healValue = PlayerController.instance.playerMaxHealth / 3;
     }
 
     void Update()

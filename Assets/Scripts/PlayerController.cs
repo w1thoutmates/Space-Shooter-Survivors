@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float level = 1;
     public float currentExp;
     public float maxExp;
+    public float expMultiplier = 1f;
 
     private Camera cam;
     private Rigidbody rb;
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     public void GainExp(float exp)
     {
-        currentExp += exp;
+        currentExp += exp * expMultiplier;
 
         if (currentExp >= maxExp)
         {
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
 
             ShowModuleChoices();
 
+            magnetArea.GetComponent<Magnet>().enabled = false;
             Time.timeScale = 0;
 
             R.instance.moduleSelectionPanel.SetActive(true);
@@ -190,9 +192,12 @@ public class PlayerController : MonoBehaviour
 
             var levelupText = Instantiate(R.instance.levelUpText, spawnPos, Quaternion.identity);
 
-            var uiParent = GameObject.Find("UI").transform;
+            var uiParent = GameObject.Find("PopupUI").transform;
             levelupText.transform.SetParent(uiParent, false);
+            levelupText.transform.SetAsFirstSibling();
         }
     }
+
+    // TODO: queue for choices.
 
 }

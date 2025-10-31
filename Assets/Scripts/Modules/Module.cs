@@ -13,6 +13,8 @@ public abstract class Module : ScriptableObject
     public string description;
     public Sprite icon;
 
+    public string typeOfBonusText;
+
     [HideInInspector] public float totalBonus;
     [HideInInspector] public float currentBonus;
 

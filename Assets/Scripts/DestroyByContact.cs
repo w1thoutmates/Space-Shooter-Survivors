@@ -6,8 +6,7 @@ public class DestroyByContact : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if(gameObject.tag == "asteroid")
-                PlayerController.instance.TakeDamage(1);
+            PlayerController.instance.TakeDamage(1);
             Destroy(gameObject);
         }
 

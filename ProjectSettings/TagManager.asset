@@ -19,7 +19,7 @@ TagManager:
   - Exp
   - Powerups
   - MagnetArea
-  - 
+  - Vfx
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Vfx
+    uniqueID: 2665726445
     locked: 0
   m_RenderingLayers:
   - Default

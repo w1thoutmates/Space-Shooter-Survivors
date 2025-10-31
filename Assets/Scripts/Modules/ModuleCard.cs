@@ -24,7 +24,7 @@ public class ModuleCard : MonoBehaviour
         string currentBonusText = module.GetBonusText(instance.currentLevel);
         string nextBonusText = module.GetBonusText(instance.currentLevel + 1);
 
-        bonusText.text = $"{currentBonusText} -> {nextBonusText}";
+        bonusText.text = $"<color=#F2FF56>{module.typeOfBonusText}</color>: <color=\"Grey\">{currentBonusText}</color> -> <color=\"Green\">{nextBonusText}</color>";
 
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(() => OnSelect());
@@ -36,5 +36,6 @@ public class ModuleCard : MonoBehaviour
         R.instance.moduleSelectionPanel.SetActive(false);
 
         Time.timeScale = 1f;
+        PlayerController.instance.magnetArea.GetComponent<Magnet>().enabled = true;
     }
 }
