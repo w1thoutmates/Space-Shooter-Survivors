@@ -6,16 +6,19 @@ TagManager:
   tags:
   - bolt
   - modifier
+  - expirence
+  - asteroid
+  - powerup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Exp
+  - Powerups
+  - MagnetArea
   - 
   - 
   - 
@@ -40,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI
+    uniqueID: 3695415469
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

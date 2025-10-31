@@ -26,10 +26,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    _SpawnWave();
-        //}
+
     }
 
     IEnumerator SpawnWaves()
@@ -41,6 +38,7 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < asteroidCount; i++)
             {
                 _SpawnWave();
+                SpawnPickup(R.instance.pickups[Random.Range(0, R.instance.pickups.Length)], _GetSpawnPosition(), _GetSpawnRotation());
                 yield return new WaitForSeconds(Random.Range(0.5f, spawnDelay));
             }
 
@@ -50,10 +48,7 @@ public class GameController : MonoBehaviour
 
     private void _SpawnWave()
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-        Quaternion spawnRotation = Quaternion.identity;
-
-        Instantiate(R.instance.asteroid, spawnPosition, spawnRotation);
+        Instantiate(R.instance.asteroid, _GetSpawnPosition(), _GetSpawnRotation());
     }
 
     public void AddScore(float value)
@@ -65,5 +60,33 @@ public class GameController : MonoBehaviour
     private void UpdateScoreText(float currentScore)
     {
         R.instance.scoreText.text = "Score: " + currentScore.ToString();
+    }
+
+    private void SpawnPickup(GameObject pickup, Vector3 spawnPosition, Quaternion spawnRotation)
+    {
+        if (_Roll(PlayerController.instance.luck))
+        {
+            Instantiate(pickup, spawnPosition, spawnRotation);
+        }
+    }
+
+    private bool _Roll(float luck)
+    {
+        if(Random.value < luck)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    private Vector3 _GetSpawnPosition()
+    {
+        return new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+    }
+
+    private Quaternion _GetSpawnRotation()
+    { 
+        return Quaternion.identity;
     }
 }

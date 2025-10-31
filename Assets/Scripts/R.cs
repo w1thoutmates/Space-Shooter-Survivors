@@ -11,7 +11,11 @@ public class R : MonoBehaviour
     [Header("Prefabs")]
     public GameObject bolt;
     public GameObject asteroid;
-    public GameObject medKit;
+    public GameObject[] pickups;
+    public GameObject shield;
+    public GameObject expirence;
+    public GameObject levelUpText;
+    public GameObject moduleCard;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
@@ -19,9 +23,12 @@ public class R : MonoBehaviour
     public GameObject pickupEffect;
 
     [Header("UI")]
-    public Image fillImage;
+    public Image hbFillImage;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI scoreText;
+    public Image ebFillImage;
+    public TextMeshProUGUI levelText;
+    public GameObject moduleSelectionPanel;
 
 
     private void Start()

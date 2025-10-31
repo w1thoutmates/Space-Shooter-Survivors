@@ -22,9 +22,9 @@ public class Healthbar : MonoBehaviour
 
     void UpdateHB()
     {
-        if (R.instance.fillImage != null && maxHealth > 0)
+        if (R.instance.hbFillImage != null && maxHealth > 0)
         {
-            R.instance.fillImage.fillAmount = currentHealth / maxHealth;
+            R.instance.hbFillImage.fillAmount = currentHealth / maxHealth;
             R.instance.healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
         }
     }

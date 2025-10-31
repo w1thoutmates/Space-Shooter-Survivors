@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MedKit
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
+      propertyPath: m_TagString
+      value: powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65,6 +77,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: -9169785214995657632}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1712953533593109352}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bed065d197aaa4ba1058413389e5f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7429341630834874321}
@@ -120,7 +135,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b470f3827a7795a4ab5e247c44ae1444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tumble: 0.3
+  tumble: 0.5
+--- !u!114 &1712953533593109352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453903544528025270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4032b67524ad644bab86ad743932b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -4
 --- !u!54 &7429341630834874321
 Rigidbody:
   m_ObjectHideFlags: 0

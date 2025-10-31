@@ -1,0 +1,12 @@
+# Made in Blockbench 5.0.3
+newmtl m_14269b7e-968d-36dc-c635-598af529652e
+map_Kd edge.png
+newmtl m_dd7c4a81-c6ad-4a72-b216-5cafcd3732a0
+map_Kd main.png
+newmtl m_40de1942-1f70-7ef7-05f7-aa47b10ff651
+map_Kd timer_outside.png
+newmtl m_4ca6e5ba-e46b-8027-1010-b9d18db46873
+map_Kd timer_INSIDE.png
+newmtl m_3b17c85a-a22c-c670-8d4f-63758b52c04b
+map_Kd timer_button.png
+newmtl none
