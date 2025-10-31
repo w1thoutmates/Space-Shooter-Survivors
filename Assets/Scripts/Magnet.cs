@@ -45,13 +45,4 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("expirence"))
-        {
-            Rigidbody rb = other.attachedRigidbody;
-            if (rb != null)
-                objects.Remove(rb);
-        }
-    }
 }

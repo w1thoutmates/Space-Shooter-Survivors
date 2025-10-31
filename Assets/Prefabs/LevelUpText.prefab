@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7412654983485511003}
   - component: {fileID: 1848774181234523108}
   - component: {fileID: -2144613152478378463}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

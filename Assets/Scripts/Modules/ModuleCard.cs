@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class ModuleCard : MonoBehaviour
 {
@@ -11,18 +10,19 @@ public class ModuleCard : MonoBehaviour
     public TextMeshProUGUI bonusText;
     public Button selectButton;
 
-    private Module currentModule;
+    private Modules currentInstance;
 
-    public void SetModule(Module module)
+    public void SetModule(Modules instance)
     {
-        currentModule = module;
+        currentInstance = instance;
+        Module module = instance.module;
 
         iconImage.sprite = module.icon;
         moduleNameText.text = module.name;
-        levelText.text = "Lv." + module.currentLevel;
+        levelText.text = "lv." + instance.currentLevel;
 
-        string currentBonusText = module.GetBonusText(module.currentLevel);
-        string nextBonusText = module.GetBonusText(module.currentLevel + 1);
+        string currentBonusText = module.GetBonusText(instance.currentLevel);
+        string nextBonusText = module.GetBonusText(instance.currentLevel + 1);
 
         bonusText.text = $"{currentBonusText} -> {nextBonusText}";
 
@@ -32,8 +32,9 @@ public class ModuleCard : MonoBehaviour
 
     private void OnSelect()
     {
-        PlayerModule.instance.AddModule(currentModule);
-
+        PlayerModule.instance.AddModule(currentInstance.module);
         R.instance.moduleSelectionPanel.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 }

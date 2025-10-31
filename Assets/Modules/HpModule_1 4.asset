@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u0425\u043F \u043C\u043E\u0434\u0443\u043B\u044C 5"
   description: "\u0425\u043F \u043C\u043E\u0434\u0443\u043B\u044C \u043F\u044F\u0442\u044B\u0439"
-  icon: {fileID: 21300000, guid: 50dc64848e3e40f4fa77ab53e6ea3783, type: 3}
+  icon: {fileID: 21300000, guid: c54a13f5361c54141a912677f346b798, type: 3}
   totalBonus: 0
   currentBonus: 0
-  currentLevel: 1
   healthPerLevel: 5

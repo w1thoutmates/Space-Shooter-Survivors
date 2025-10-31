@@ -151,19 +151,13 @@ public class PlayerController : MonoBehaviour
             expirenceBar.SetMaxExp(maxExp);
             R.instance.levelText.text = "lv." + level;
 
-            if (R.instance.levelUpText != null)
-            {
-                Vector3 spawnPos = transform.position + Vector3.up * 2f;
+            ShowModuleChoices();
 
-                var levelupText = Instantiate(R.instance.levelUpText, spawnPos, Quaternion.identity);
+            Time.timeScale = 0;
 
-                var uiParent = GameObject.Find("UI").transform;
-                levelupText.transform.SetParent(uiParent, false);
-            }
+            R.instance.moduleSelectionPanel.SetActive(true);
 
-            ShowModuleChoices();  
-            R.instance.moduleSelectionPanel.SetActive(true); 
-            Time.timeScale = 0f; 
+            SpawnLevelUpText();
         }
 
         expirenceBar.SetExp(currentExp);
@@ -176,19 +170,28 @@ public class PlayerController : MonoBehaviour
         foreach (Transform child in moduleGridContainer)
             Destroy(child.gameObject);
 
-        foreach(var module in choices)
-        { 
+        foreach (var module in choices)
+        {
             GameObject cardObj = Instantiate(R.instance.moduleCard, moduleGridContainer);
             ModuleCard card = cardObj.GetComponent<ModuleCard>();
-            card.SetModule(module);
 
-            card.selectButton.onClick.RemoveAllListeners();
-            card.selectButton.onClick.AddListener(() =>
-            {
-                PlayerModule.instance.AddModule(module);
-                R.instance.moduleSelectionPanel.SetActive(false);
-                Time.timeScale = 1f;
-            });
+            Modules instance = PlayerModule.instance.GetInstance(module);
+            card.SetModule(instance);
+        }
+
+        R.instance.moduleSelectionPanel.SetActive(true);
+    }
+
+    private void SpawnLevelUpText()
+    {
+        if (R.instance.levelUpText != null)
+        {
+            Vector3 spawnPos = transform.position + Vector3.up * 2f;
+
+            var levelupText = Instantiate(R.instance.levelUpText, spawnPos, Quaternion.identity);
+
+            var uiParent = GameObject.Find("UI").transform;
+            levelupText.transform.SetParent(uiParent, false);
         }
     }
 

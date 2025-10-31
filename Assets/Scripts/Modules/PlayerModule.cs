@@ -8,7 +8,7 @@ public class PlayerModule : MonoBehaviour
     public static PlayerModule instance;
 
     public int maxModules = 3;
-    public List<Module> ownedModules = new List<Module>();
+    public List<Modules> ownedModules = new List<Modules>();
     public List<Module> allModules;
 
     private void Awake()
@@ -22,61 +22,55 @@ public class PlayerModule : MonoBehaviour
     {
         List<Module> choices = new List<Module>();
 
-        List<Module> newModules = new List<Module>();
-        foreach(var m in allModules)
+        List<Module> newModules = allModules.FindAll(m =>
+            !ownedModules.Exists(inst => inst.module == m));
+
+        List<Module> availableModules = new List<Module>();
+
+        if (ownedModules.Count >= maxModules || newModules.Count == 0)
         {
-            if (!ownedModules.Contains(m))
-            {
-                newModules.Add(m);
-            }
+            foreach (var inst in ownedModules) availableModules.Add(inst.module);
+        }
+        else
+        {
+            availableModules.AddRange(newModules);
+            foreach (var inst in ownedModules) availableModules.Add(inst.module);
         }
 
-        for (int i = 0; i < 3; i++)
+        while (choices.Count < 3 && availableModules.Count > 0)
         {
-            Module selected = null;
-
-            if (ownedModules.Count == 0 && newModules.Count == 0)
-                break;
-
-            if (ownedModules.Count > maxModules || newModules.Count == 0)
-            {
-                if (ownedModules.Count > 0)
-                    selected = ownedModules[Random.Range(0, ownedModules.Count)];
-            }
-            else
-            {
-                if(Random.value < 0.5f && newModules.Count > 0)
-                {
-                    selected = newModules[Random.Range(0, newModules.Count)];
-                    newModules.Remove(selected);
-                }
-                else if(ownedModules.Count > 0)
-                {
-                    selected = ownedModules[Random.Range(0, ownedModules.Count)];
-                }
-            }
-
-            if (selected != null && !choices.Contains(selected))
-            {
-                choices.Add(selected);
-            }
+            int index = Random.Range(0, availableModules.Count);
+            Module selected = availableModules[index];
+            availableModules.RemoveAt(index);
+            choices.Add(selected);
         }
 
         return choices;
     }
 
+
     public void AddModule(Module module)
     {
-        if (ownedModules.Contains(module))
-        {
-            module.currentLevel++;
-        }
-        else
-        {
-            if (ownedModules.Count < maxModules)
-                ownedModules.Add(module);
-        }
+        Modules instance = ownedModules.Find(m => m.module == module);
 
-        module.Apply(PlayerController.instance, module.currentLevel);
+        if (instance != null)
+        {
+            instance.currentLevel++;
+            module.Apply(PlayerController.instance, instance.currentLevel);
+        }
+        else if (ownedModules.Count < maxModules)
+        {
+            instance = new Modules { module = module, currentLevel = 1 };
+            ownedModules.Add(instance);
+            module.Apply(PlayerController.instance, instance.currentLevel);
+        }
+    }
+
+    public Modules GetInstance(Module module)
+    {
+        Modules instance = ownedModules.Find(m => m.module == module);
+        if (instance != null) return instance;
+
+        return new Modules { module = module, currentLevel = 0 };
     }
 }

@@ -1,5 +1,12 @@
 using UnityEngine;
 
+[System.Serializable]
+public class Modules
+{
+    public Module module;
+    public int currentLevel;
+}
+
 public abstract class Module : ScriptableObject
 {
     public string name;
@@ -8,7 +15,6 @@ public abstract class Module : ScriptableObject
 
     [HideInInspector] public float totalBonus;
     [HideInInspector] public float currentBonus;
-    [HideInInspector] public int currentLevel = 1;
 
     public abstract void Apply(PlayerController player, int level);
 
