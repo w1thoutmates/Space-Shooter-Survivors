@@ -36,6 +36,7 @@ public class ModuleCard : MonoBehaviour
         R.instance.moduleSelectionPanel.SetActive(false);
 
         Time.timeScale = 1f;
+        PlayerController.instance.expirenceBar.StopRainbow();
         PlayerController.instance.LevelUp();
         Inventory.instance.AddItemInInventoryOnUI();
         PlayerController.instance.magnetArea.GetComponent<Magnet>().enabled = true;

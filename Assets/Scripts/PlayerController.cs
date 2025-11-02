@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     public float magnetBonus;
 
     public float speed = 10f;
+    [HideInInspector] public float baseSpeed;
     public float tilt = 4f;
 
     public Transform shotSpawn;
     public ParticleSystem shotEffect;
 
     public float fireRate = 0.5f;
+    [HideInInspector] public float baseFireRate;
     public float nextFire = 0.0f;
 
     public Healthbar healthBar;
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
             magnetScale.y + magnetBonus,
             magnetScale.z + magnetBonus
         );
+
+        baseSpeed = speed;
+        baseFireRate = fireRate;
 
         playerCurrentHealth = playerMaxHealth;
         healthBar.SetMaxHealth(playerMaxHealth);
@@ -153,6 +158,8 @@ public class PlayerController : MonoBehaviour
         {
             // здесь был lvlup, сейчас он в OnSelect() ModuleCard класса
             ShowModuleChoices();
+
+            expirenceBar.StartRainbow();        
 
             magnetArea.GetComponent<Magnet>().enabled = false;
             Time.timeScale = 0;

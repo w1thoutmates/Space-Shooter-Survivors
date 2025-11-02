@@ -566,13 +566,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.4415095, g: 0.4415095, b: 0.4415095, a: 1}
+    bottomRight: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 815823129}
   - component: {fileID: 815823128}
   m_Layer: 5
-  m_Name: Flil (eb)
+  m_Name: Fill (eb)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1490,13 +1490,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.690566, g: 0.690566, b: 0.690566, a: 1}
+    bottomRight: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1955,13 +1955,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+    bottomRight: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -2158,8 +2158,8 @@ MonoBehaviour:
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+    bottomRight: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -2394,17 +2394,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c258890b0dcaac45b6c2a4299911ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 333
+  playerMaxHealth: 3
   playerCurrentHealth: 0
   score: 0
   luck: 0.1
   magnetArea: {fileID: 1863436131}
   magnetBonus: 0
   speed: 10
+  baseSpeed: 0
   tilt: 2.5
   shotSpawn: {fileID: 89660539}
   shotEffect: {fileID: 756578307}
   fireRate: 0.3
+  baseFireRate: 0
   nextFire: 0
   healthBar: {fileID: 1682187816}
   expirenceBar: {fileID: 1395265958}
@@ -2449,6 +2451,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ddff6beda7088a4ca4385809897cb42, type: 2}
   - {fileID: 11400000, guid: d0f879e8d40a81b4895592add0d8e5f3, type: 2}
   - {fileID: 11400000, guid: a85cbb4476fcfed43a2c020b3703a7a0, type: 2}
+  - {fileID: 11400000, guid: 4f0003cb6ba3e8546a0dac81b8978c06, type: 2}
+  - {fileID: 11400000, guid: 8e091efee3072874dbc4f9f5d97ca0b7, type: 2}
 --- !u!1 &1329426274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,13 +2521,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.690566, g: 0.690566, b: 0.690566, a: 1}
+    bottomRight: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -2675,6 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d61717a792c314f81b13f3b4ec0a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothSpeed: 5
 --- !u!1 &1450311380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,13 +2729,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+    bottomRight: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -3366,13 +3371,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.690566, g: 0.690566, b: 0.690566, a: 1}
+    bottomRight: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0

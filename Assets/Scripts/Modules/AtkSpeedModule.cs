@@ -8,7 +8,7 @@ public class AtkSpeedModule : Module
     {
         float totalBonus = atkSpeedPercent * level;
 
-        player.fireRate = player.fireRate / (1 + totalBonus);
+        player.fireRate = player.baseFireRate / (1f + totalBonus);
     }
 
     public override string GetBonusText(int level)

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4fcbc5e4cfd604cbee45734991629c, type: 3}
-  m_Name: HpModule_1
+  m_Script: {fileID: 11500000, guid: 377d44b9a43b126489492aad7f0398fd, type: 3}
+  m_Name: LuckModule
   m_EditorClassIdentifier: 
-  name: Health UP module
-  description: Increase player's health
-  icon: {fileID: 21300000, guid: f90b2d116d4d542428b8573b0f92830b, type: 3}
-  typeOfBonusText: Hp bonus
+  name: Luck Module
+  description: Increase player's chanse to spawn powerups(pickups)
+  icon: {fileID: 21300000, guid: 294f05a470aa081489f6e99b8b113c43, type: 3}
+  typeOfBonusText: Luck bonus
   totalBonus: 0
   currentBonus: 0
-  healthPerLevel: 1
+  luckBonus: 0.05
