@@ -66,6 +66,12 @@ public class PlayerController : MonoBehaviour
 
         level = 1;
         R.instance.levelText.text = "lv." + level.ToString();
+
+        if (magnetArea != null)
+        {
+            magnetArea.transform.position = transform.position;
+            magnetArea.transform.SetParent(null);
+        }
     }
 
     public void Update()
@@ -145,13 +151,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentExp >= maxExp)
         {
-            currentExp -= maxExp;
-            level++;
-            maxExp *= 1.25f;
-
-            expirenceBar.SetMaxExp(maxExp);
-            R.instance.levelText.text = "lv." + level;
-
+            // здесь был lvlup, сейчас он в OnSelect() ModuleCard класса
             ShowModuleChoices();
 
             magnetArea.GetComponent<Magnet>().enabled = false;
@@ -162,6 +162,17 @@ public class PlayerController : MonoBehaviour
             SpawnLevelUpText();
         }
 
+        expirenceBar.SetExp(currentExp);
+    }
+
+    public void LevelUp()
+    {
+        currentExp -= maxExp;
+        level++;
+        maxExp *= 1.25f;
+
+        expirenceBar.SetMaxExp(maxExp);
+        R.instance.levelText.text = "lv." + level;
         expirenceBar.SetExp(currentExp);
     }
 

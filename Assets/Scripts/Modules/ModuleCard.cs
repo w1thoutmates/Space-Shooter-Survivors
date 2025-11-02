@@ -32,10 +32,12 @@ public class ModuleCard : MonoBehaviour
 
     private void OnSelect()
     {
-        PlayerModule.instance.AddModule(currentInstance.module);
+        PlayerModule.instance.GetComponent<PlayerModule>().AddModule(currentInstance.module);
         R.instance.moduleSelectionPanel.SetActive(false);
 
         Time.timeScale = 1f;
+        PlayerController.instance.LevelUp();
+        Inventory.instance.AddItemInInventoryOnUI();
         PlayerController.instance.magnetArea.GetComponent<Magnet>().enabled = true;
     }
 }

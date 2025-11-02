@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class Expirence : MonoBehaviour
 {
     public float[] expAmounts;
@@ -10,10 +9,15 @@ public class Expirence : MonoBehaviour
     {
         int randomIndex = Random.Range(0, expAmounts.Length);
         _expAmount = expAmounts[randomIndex];
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
 
     public void Collect(PlayerController player)
     {
+        if(player == null || player.gameObject == null) return;
+
         player.GainExp(_expAmount);
         Destroy(gameObject);
     }

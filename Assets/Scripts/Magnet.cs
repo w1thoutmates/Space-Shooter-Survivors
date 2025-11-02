@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Magnet : MonoBehaviour
@@ -11,10 +12,18 @@ public class Magnet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PlayerController.instance == null) return;
+        if (objects.Count == 0) return;
+
         for (int i = objects.Count - 1; i >= 0; i--)
         {
             Rigidbody rb = objects[i];
-            if (rb == null) { objects.RemoveAt(i); continue; }
+
+            if (rb == null || !rb.gameObject.activeInHierarchy)
+            {
+                objects.RemoveAt(i);
+                continue;
+            }
 
             Vector3 dir = (transform.position - rb.position).normalized;
             Vector3 targetVel = dir * maxSpeed;
@@ -27,12 +36,19 @@ public class Magnet : MonoBehaviour
                     Expirence exp = rb.GetComponent<Expirence>();
                     if (exp != null)
                     {
+                        if (PlayerController.instance == null) continue;
                         exp.Collect(PlayerController.instance);
                     }
                 }
                 objects.RemoveAt(i);
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (PlayerController.instance != null)
+            transform.position = PlayerController.instance.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
