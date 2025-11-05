@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
     public float tilt = 4f;
 
     public Transform shotSpawn;
-    public ParticleSystem shotEffect;
 
     public float fireRate = 0.5f;
     [HideInInspector] public float baseFireRate;
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private Camera cam;
     private Rigidbody rb;
+    private Coroutine lightCoroutine;
 
     public Transform moduleGridContainer;
 
@@ -81,8 +82,9 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire) {
-            shotEffect.Play();
+        if ((Input.GetButton("Fire1") || Input.GetKey(KeyCode.E)) && Time.time > nextFire) {
+            R.instance.shotEffect.Play();
+            StartMuzzleFlash();
             nextFire = Time.time + fireRate;
             Instantiate(R.instance.bolt, shotSpawn.transform.position, shotSpawn.rotation);
         }
@@ -214,6 +216,30 @@ public class PlayerController : MonoBehaviour
             levelupText.transform.SetParent(uiParent, false);
             levelupText.transform.SetAsFirstSibling();
         }
+    }
+
+    private void StartMuzzleFlash()
+    {
+        if (lightCoroutine != null) StopCoroutine(lightCoroutine);
+        R.instance.muzzleLight.gameObject.SetActive(true);
+        R.instance.muzzleLight.intensity = 45f;
+        lightCoroutine = StartCoroutine(FadeLight());
+    }
+
+    private IEnumerator FadeLight()
+    {
+        yield return new WaitForSeconds(0.1f * 0.3f);  
+        float fadeTime = 0.1f * 0.7f;
+        float startIntensity = R.instance.muzzleLight.intensity;
+        float timer = 0;
+
+        while (timer < fadeTime)
+        {
+            timer += Time.deltaTime;
+            R.instance.muzzleLight.intensity = Mathf.Lerp(startIntensity, 0f, timer / fadeTime);
+            yield return null;
+        }
+        R.instance.muzzleLight.gameObject.SetActive(false);
     }
 
     // TODO: queue for choices.

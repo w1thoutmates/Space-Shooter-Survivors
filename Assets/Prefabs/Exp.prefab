@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expAmounts:
   - 8
-  - 10
   - 9
-  - 12
+  - 10
   - 11
+  - 12

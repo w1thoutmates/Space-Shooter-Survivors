@@ -21,6 +21,9 @@ public class R : MonoBehaviour
     public GameObject explosionAsteroid;
     public GameObject lazerRayHit;
     public GameObject pickupEffect;
+    public ParticleSystem shotEffect;
+    public GameObject muzzlePoint;
+    public Light muzzleLight;
 
     [Header("UI")]
     public Image hbFillImage;
