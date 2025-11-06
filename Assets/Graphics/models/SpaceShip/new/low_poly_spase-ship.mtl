@@ -1,0 +1,10 @@
+# Made in Blockbench 5.0.3
+newmtl m_1065e3e5-7d1d-fc56-346f-8fe4f5371c21
+map_Kd texture-mainBody.png
+newmtl m_0f300d41-bae9-5241-2312-d6ef0c7cc402
+map_Kd texture-pieOfWing.png
+newmtl m_5c7d32a2-2013-7774-f8ed-a35897739b8c
+map_Kd texture-glass.png
+newmtl m_be30c766-23e7-ed10-4e05-1fb24482a4f0
+map_Kd texture-firesOnBackward.png
+newmtl none

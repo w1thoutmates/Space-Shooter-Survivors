@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6978050123719315965
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 473136604424711503, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026575783398211322, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_Name
+      value: Enemy Bolt Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026575783398211322, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095448494786054507, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818980963906963804, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: speed
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905990029127018108, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 88f8d269559b71d479b13a006edd2185, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2026575783398211322, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -102952366815379162}
+  m_SourcePrefab: {fileID: 100100000, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+--- !u!1 &8991670224133746439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2026575783398211322, guid: 01946cea25adf5647b6b23fe2657dee9, type: 3}
+  m_PrefabInstance: {fileID: 6978050123719315965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-102952366815379162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991670224133746439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec027f7cbb022b419505a5d6701ca1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 0

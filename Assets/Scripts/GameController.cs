@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
 
 public class GameController : MonoBehaviour
 {
@@ -26,7 +27,10 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _SpawnEnemy(R.instance.enemySpaceShip, _GetSpawnPosition(), _GetSpawnRotation());
+        }
     }
 
     IEnumerator SpawnWaves()
@@ -38,7 +42,8 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < asteroidCount; i++)
             {
                 _SpawnWave();
-                SpawnPickup(R.instance.pickups[Random.Range(0, R.instance.pickups.Length)], _GetSpawnPosition(), _GetSpawnRotation());
+                _SpawnEnemy(R.instance.enemySpaceShip, _GetSpawnPosition(), _GetSpawnRotation());
+                _SpawnPickup(R.instance.pickups[Random.Range(0, R.instance.pickups.Length)], _GetSpawnPosition(), _GetSpawnRotation());
                 yield return new WaitForSeconds(Random.Range(0.5f, spawnDelay));
             }
 
@@ -62,11 +67,19 @@ public class GameController : MonoBehaviour
         R.instance.scoreText.text = "Score: " + currentScore.ToString();
     }
 
-    private void SpawnPickup(GameObject pickup, Vector3 spawnPosition, Quaternion spawnRotation)
+    private void _SpawnPickup(GameObject pickup, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         if (_Roll(PlayerController.instance.luck))
         {
             Instantiate(pickup, spawnPosition, spawnRotation);
+        }
+    }
+
+    private void _SpawnEnemy(GameObject enemyPf, Vector3 spawnPosition, Quaternion spawnRotation)
+    {
+        if (_Roll(PlayerController.instance.difficulty))
+        {
+            Instantiate(enemyPf, spawnPosition, spawnRotation);
         }
     }
 

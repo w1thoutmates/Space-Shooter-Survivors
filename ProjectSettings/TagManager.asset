@@ -9,6 +9,7 @@ TagManager:
   - expirence
   - asteroid
   - powerup
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class R : MonoBehaviour
     public GameObject expirence;
     public GameObject levelUpText;
     public GameObject moduleCard;
+    public GameObject enemySpaceShip;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
@@ -32,6 +33,9 @@ public class R : MonoBehaviour
     public Image ebFillImage;
     public TextMeshProUGUI levelText;
     public GameObject moduleSelectionPanel;
+
+    [Header("Transforms")]
+    public Transform playerShotSpawn;
 
 
     private void Start()

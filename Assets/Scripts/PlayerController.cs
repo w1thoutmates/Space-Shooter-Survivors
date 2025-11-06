@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public float score;
     public float luck;
+    public float difficulty = 0.15f;
 
     public Collider magnetArea;
     public float magnetBonus;
@@ -20,8 +21,6 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     [HideInInspector] public float baseSpeed;
     public float tilt = 4f;
-
-    public Transform shotSpawn;
 
     public float fireRate = 0.5f;
     [HideInInspector] public float baseFireRate;
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour
             R.instance.shotEffect.Play();
             StartMuzzleFlash();
             nextFire = Time.time + fireRate;
-            Instantiate(R.instance.bolt, shotSpawn.transform.position, shotSpawn.rotation);
+            Instantiate(R.instance.bolt, R.instance.playerShotSpawn.position, R.instance.playerShotSpawn.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -125,8 +124,13 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var hitEffect = Instantiate(R.instance.lazerRayHit, transform.position, Quaternion.identity);
+        hitEffect.transform.SetParent(transform, true);
+
         playerCurrentHealth -= value;
         healthBar.SetHealth(playerCurrentHealth);
+
+        // TODO: add frames of immortality after damage taken and visual effect for this
 
         if (playerCurrentHealth <= 0)
         {
@@ -163,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
             expirenceBar.StartRainbow();        
 
-            magnetArea.GetComponent<Magnet>().enabled = false;
+            magnetArea.GetComponent<Magnet>().gameObject.SetActive(false);
             Time.timeScale = 0;
 
             R.instance.moduleSelectionPanel.SetActive(true);

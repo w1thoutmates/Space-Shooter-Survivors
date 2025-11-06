@@ -13,6 +13,8 @@ public class ExpirenceBar : MonoBehaviour
     private bool rainbowActive;
     private float hue;
 
+    private float savedDisplayedExp;
+
     private void Awake()
     {
         fillImage = transform.Find("Fill (eb)").GetComponent<Image>();
@@ -32,7 +34,7 @@ public class ExpirenceBar : MonoBehaviour
 
     void Update()
     {
-        if (displayedExp != currentExp)
+        if (!rainbowActive && displayedExp != currentExp)
         {
             displayedExp = Mathf.Lerp(displayedExp, currentExp, Time.deltaTime * smoothSpeed);
             UpdateEB();
@@ -48,23 +50,35 @@ public class ExpirenceBar : MonoBehaviour
 
     void UpdateEB(bool instant = false)
     {
-        if (R.instance.ebFillImage != null)
+        if (fillImage != null)
         {
-            float value = instant ? currentExp : displayedExp;
-            R.instance.ebFillImage.fillAmount = value / maxExp;
+            //    float value = instant ? currentExp : displayedExp;
+            fillImage.fillAmount = displayedExp / maxExp; 
         }
     }
 
     public void StartRainbow()
     {
+        if (rainbowActive) return;
+        
         rainbowActive = true;
+        savedDisplayedExp = displayedExp;
+        displayedExp = maxExp;
+        UpdateEB(true);
+
         hue = 0f;
     }
 
     public void StopRainbow()
     {
+        if(!rainbowActive) return;
+
         rainbowActive = false;
         if (fillImage != null)
+        { 
             fillImage.color = originalColor;
+            displayedExp = savedDisplayedExp;
+            UpdateEB(true);
+        }
     }
 }

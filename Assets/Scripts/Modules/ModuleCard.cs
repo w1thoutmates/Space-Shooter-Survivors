@@ -39,6 +39,6 @@ public class ModuleCard : MonoBehaviour
         PlayerController.instance.expirenceBar.StopRainbow();
         PlayerController.instance.LevelUp();
         Inventory.instance.AddItemInInventoryOnUI();
-        PlayerController.instance.magnetArea.GetComponent<Magnet>().enabled = true;
+        PlayerController.instance.magnetArea.GetComponent<Magnet>().gameObject.SetActive(true);
     }
 }

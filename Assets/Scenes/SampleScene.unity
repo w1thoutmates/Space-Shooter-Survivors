@@ -1317,8 +1317,8 @@ Transform:
   m_GameObject: {fileID: 826224740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12}
-  m_LocalScale: {x: 40, y: 8, z: 35}
+  m_LocalPosition: {x: 0, y: 0, z: 4.9}
+  m_LocalScale: {x: 25, y: 3, z: 16}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2080,6 +2080,7 @@ MonoBehaviour:
   expirence: {fileID: 6115462567781319873, guid: dfd43c8565a2b5d4883c96d70453b27e, type: 3}
   levelUpText: {fileID: 6227546474029941072, guid: 1f4b07c03b88d1241bf0653f7b36cbe6, type: 3}
   moduleCard: {fileID: 5317957917898180298, guid: 768ece071aac1754591976b08ac8ea25, type: 3}
+  enemySpaceShip: {fileID: 1503187457053091596, guid: 93c27757dbafa6544abf3c246c8f9b5b, type: 3}
   explosionAsteroid: {fileID: 1981774452263784, guid: 4e19371f43812044389be8538ddac949, type: 3}
   lazerRayHit: {fileID: 1256001557233130, guid: 2dd0bdb7830e6644da169b32252dca96, type: 3}
   pickupEffect: {fileID: 1256001557233130, guid: 394c15b8f20f68a4c9b4b006df4e529f, type: 3}
@@ -2092,6 +2093,7 @@ MonoBehaviour:
   ebFillImage: {fileID: 815823128}
   levelText: {fileID: 360319915}
   moduleSelectionPanel: {fileID: 861046683}
+  playerShotSpawn: {fileID: 89660539}
 --- !u!4 &1214114613
 Transform:
   m_ObjectHideFlags: 0
@@ -2253,15 +2255,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2303,6 +2305,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38ad7629c980b954a85367f29d3b71c2, type: 2}
+    - target: {fileID: -7635826562936255635, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 22950f9a3a1151b42aec31f3853ff455, type: 2}
+    - target: {fileID: -7635826562936255635, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 25001c6954abfea4c816e381afdb5509, type: 2}
+    - target: {fileID: -7635826562936255635, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d3cc5e747875e34cacd636975ed3bd8, type: 2}
+    - target: {fileID: -6400281290468069383, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: e43ef6ef2d9c51541a465cee6ea89a0b, type: 3}
     - target: {fileID: 919132149155446097, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2314,6 +2340,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: e308141df0c3656469f4319e7c08bfc7, type: 3}
       propertyPath: m_Layer
@@ -2378,8 +2416,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0874102, y: 1, z: 3.0641553}
-  m_Center: {x: -0.010338835, y: 0, z: 0.18803701}
+  m_Size: {x: 1.1825746, y: 1, z: 2.61133}
+  m_Center: {x: -0.04194206, y: 0, z: 0.20859051}
 --- !u!54 &1278656002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2419,16 +2457,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c258890b0dcaac45b6c2a4299911ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 3
+  playerMaxHealth: 99
   playerCurrentHealth: 0
   score: 0
   luck: 0.1
+  difficulty: 0.15
   magnetArea: {fileID: 1863436131}
   magnetBonus: 0
   speed: 10
   baseSpeed: 0
   tilt: 2.5
-  shotSpawn: {fileID: 89660539}
   fireRate: 0.3
   baseFireRate: 0
   nextFire: 0
@@ -2703,7 +2741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d61717a792c314f81b13f3b4ec0a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 5
+  smoothSpeed: 10
 --- !u!1 &1450311380
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3580,18 @@ PrefabInstance:
     - target: {fileID: 3558440084947130266, guid: 3126e208ae89a8a439e117573f0d012c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532963856061195083, guid: 3126e208ae89a8a439e117573f0d012c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532963856061195083, guid: 3126e208ae89a8a439e117573f0d012c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532963856061195083, guid: 3126e208ae89a8a439e117573f0d012c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
