@@ -22,7 +22,7 @@ public class DestroyByContact : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(1);
-                hitEffect = Instantiate(R.instance.lazerRayHit, enemy.transform.position, Quaternion.identity);
+                hitEffect = Instantiate(R.instance.hits[Random.Range(0, R.instance.hits.Length)], enemy.transform.position, Quaternion.identity);
                 hitEffect.transform.SetParent(enemy.transform, true);
 
                 if (enemy.IsDead())

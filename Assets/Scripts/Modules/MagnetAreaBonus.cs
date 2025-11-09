@@ -8,6 +8,7 @@ public class MagnetAreaBonus : Module
     {
         float totalBonus = magnetAreaBonus * level;
         player.magnetBonus = player.magnetBonus + totalBonus;
+        player.UpdateMagnetArea();
     }
 
     public override string GetBonusText(int level) => (magnetAreaBonus * level).ToString();

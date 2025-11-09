@@ -1,44 +1,56 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.LowLevelPhysics;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    [Header("Player stats")]
     public float playerMaxHealth;
     [HideInInspector] public float playerCurrentHealth;
-
     [HideInInspector] public float score;
     public float luck;
     public float difficulty = 0.15f;
-
-    public Collider magnetArea;
-    public float magnetBonus;
-
+    [HideInInspector] public float magnetBonus;
+    [HideInInspector] public float baseMagnetBonus;
+    [HideInInspector] public float pickupMagnetBonus = 0;
     public float speed = 10f;
     [HideInInspector] public float baseSpeed;
-    public float tilt = 4f;
-
     public float fireRate = 0.5f;
     [HideInInspector] public float baseFireRate;
-    public float nextFire = 0.0f;
-
-    public Healthbar healthBar;
-    public ExpirenceBar expirenceBar;
-
+    [HideInInspector] public float nextFire = 0.0f;
     [HideInInspector] public float level = 1;
     public float currentExp;
     public float maxExp;
     public float expMultiplier = 1f;
+    public float invincibilityLength;
+    public float flashLength = 0.1f;
+
+    [Header("Needed resources")]
+    public Collider magnetArea;
+    public Healthbar healthBar;
+    public ExpirenceBar expirenceBar;
+    public Transform moduleGridContainer;
+    public Renderer playerRenderer;
+
+    [Header("Values for visual")]
+    public float tilt = 4f;
 
     private Camera cam;
     private Rigidbody rb;
     private Coroutine lightCoroutine;
+    private Vector3 baseMagnetScale;
+    private Queue<int> moduleChoicesQueue = new Queue<int>();
+    private bool isChoosingModule;
+    private float invincibilityCounter;
+    private float flashCounter;
 
-    public Transform moduleGridContainer;
 
     private void Awake()
     {
@@ -53,15 +65,19 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
 
-        var magnetScale = magnetArea.transform.localScale;
-        magnetArea.transform.localScale = new Vector3(
-            magnetScale.x + magnetBonus,
-            magnetScale.y + magnetBonus,
-            magnetScale.z + magnetBonus
-        );
-
         baseSpeed = speed;
         baseFireRate = fireRate;
+        baseMagnetBonus = magnetBonus;
+
+        if (magnetArea != null)
+        {
+            baseMagnetScale = magnetArea.transform.localScale;
+
+            magnetArea.transform.position = transform.position;
+            magnetArea.transform.SetParent(null);
+        }
+
+        UpdateMagnetArea();
 
         playerCurrentHealth = playerMaxHealth;
         healthBar.SetMaxHealth(playerMaxHealth);
@@ -71,12 +87,6 @@ public class PlayerController : MonoBehaviour
 
         level = 1;
         R.instance.levelText.text = "lv." + level.ToString();
-
-        if (magnetArea != null)
-        {
-            magnetArea.transform.position = transform.position;
-            magnetArea.transform.SetParent(null);
-        }
     }
 
     public void Update()
@@ -90,6 +100,23 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
             GainExp(maxExp);
+
+        if(invincibilityCounter > 0)
+        {
+            invincibilityCounter -= Time.deltaTime;
+
+            flashCounter -= Time.deltaTime;
+            if(flashCounter <= 0)
+            {
+                playerRenderer.enabled = !playerRenderer.enabled;
+                flashCounter = flashLength;
+            }
+
+            if(invincibilityCounter <= 0)
+            {
+                playerRenderer.enabled = true;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -124,22 +151,40 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        var hitEffect = Instantiate(R.instance.lazerRayHit, transform.position, Quaternion.identity);
-        hitEffect.transform.SetParent(transform, true);
-
-        playerCurrentHealth -= value;
-        healthBar.SetHealth(playerCurrentHealth);
-
-        // TODO: add frames of immortality after damage taken and visual effect for this
-
-        if (playerCurrentHealth <= 0)
+        if(invincibilityCounter <= 0)
         {
-            if (gameObject != null)
+
+            var laserHitEffect = Instantiate(R.instance.lazerRayHit, transform.position, Quaternion.identity);
+            laserHitEffect.transform.SetParent(transform, true);
+
+            var hitEffect = Instantiate(R.instance.hitEffect, transform.position, Quaternion.identity);
+            hitEffect.transform.SetParent(transform, true);
+
+            playerCurrentHealth -= value;
+            healthBar.SetHealth(playerCurrentHealth);
+
+            invincibilityCounter = invincibilityLength;
+
+            playerRenderer.enabled = false;
+
+            flashCounter = flashLength;
+
+            if (playerCurrentHealth <= 0)
             {
-                Destroy(gameObject);
-                Time.timeScale = 0f;
+                Die();
+                return;
             }
-            return;
+
+        }
+    }
+
+    private void Die()
+    {
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+            Instantiate(R.instance.playerExplosionEffect, transform.position, Quaternion.identity);
+            Time.timeScale = 0f;
         }
     }
 
@@ -162,15 +207,24 @@ public class PlayerController : MonoBehaviour
 
         if (currentExp >= maxExp)
         {
-            // ����� ��� lvlup, ������ �� � OnSelect() ModuleCard ������
-            ShowModuleChoices();
+            while (currentExp >= maxExp)
+            {
+                currentExp -= maxExp;
+                maxExp *= 1.25f;
+                expirenceBar.SetMaxExp(maxExp);
+                level++;
+                R.instance.levelText.text = "lv. " + level;
 
-            expirenceBar.StartRainbow();        
+                moduleChoicesQueue.Enqueue(1); // добавление запроса на выбор модуля в очередь
+                expirenceBar.SetExp(currentExp);
+                expirenceBar.StartRainbow();
 
-            magnetArea.GetComponent<Magnet>().gameObject.SetActive(false);
-            Time.timeScale = 0;
-
-            R.instance.moduleSelectionPanel.SetActive(true);
+            }
+            
+            if(!isChoosingModule)
+            {
+                StartCoroutine(ProcessModuleChoiceQueue());
+            }
 
             SpawnLevelUpText();
         }
@@ -178,15 +232,26 @@ public class PlayerController : MonoBehaviour
         expirenceBar.SetExp(currentExp);
     }
 
-    public void LevelUp()
+    private IEnumerator ProcessModuleChoiceQueue()
     {
-        currentExp -= maxExp;
-        level++;
-        maxExp *= 1.25f;
+        isChoosingModule = true;
+        R.instance.moduleSelectionPanel.SetActive(true);
 
-        expirenceBar.SetMaxExp(maxExp);
-        R.instance.levelText.text = "lv." + level;
-        expirenceBar.SetExp(currentExp);
+        while(moduleChoicesQueue.Count > 0)
+        {
+            moduleChoicesQueue.Dequeue(); // удалить обработанный случай из очереди
+
+            ShowModuleChoices();
+            magnetArea.GetComponent<Magnet>().gameObject.SetActive(false);
+            Time.timeScale = 0;
+
+            while(Time.timeScale == 0) yield return null;
+
+            yield return null;
+        }
+
+        isChoosingModule = false;
+        R.instance.moduleSelectionPanel.SetActive(false);
     }
 
     private void ShowModuleChoices()
@@ -232,7 +297,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator FadeLight()
     {
-        yield return new WaitForSeconds(0.1f * 0.3f);  
+        yield return new WaitForSeconds(0.1f * 0.3f);
         float fadeTime = 0.1f * 0.7f;
         float startIntensity = R.instance.muzzleLight.intensity;
         float timer = 0;
@@ -246,6 +311,12 @@ public class PlayerController : MonoBehaviour
         R.instance.muzzleLight.gameObject.SetActive(false);
     }
 
-    // TODO: queue for choices.
-
+    public void UpdateMagnetArea()
+    {
+        magnetArea.transform.localScale = new Vector3(
+            baseMagnetScale.x + magnetBonus + pickupMagnetBonus,
+            baseMagnetScale.y + magnetBonus + pickupMagnetBonus,
+            baseMagnetScale.z + magnetBonus + pickupMagnetBonus
+        );
+    }
 }

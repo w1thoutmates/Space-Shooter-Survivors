@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isManeuvering)
         {
@@ -85,10 +85,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            newX = Mathf.Lerp(transform.position.x, currentTargetX, Time.deltaTime / maneuverSmoothTime);
+            newX = Mathf.Lerp(transform.position.x, currentTargetX, Time.fixedDeltaTime / maneuverSmoothTime);
             rb.MovePosition(new Vector3(newX, transform.position.y, transform.position.z));
 
-            if (Mathf.Abs(transform.position.x - currentTargetX) < 0.35f)
+            if (Mathf.Abs(transform.position.x - currentTargetX) < 0.1f)
             {
                 StartCoroutine(DashEffect());
 
@@ -96,13 +96,15 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        float currentTiltMultiplier = 3.5f;
+        float currentTiltMultiplier = 1f;
         float tilt = (currentTargetX - transform.position.x) * currentTiltMultiplier;
         transform.rotation = Quaternion.Euler(0, 0, -tilt);
     }
 
     private void PickNewManeuverTarget()
     {
+        xPadding = Random.Range(2f, 4f);
+
         if (transform.position.x < 0)
         {
             currentTargetX = Random.Range(xBoundary - xPadding, xBoundary);

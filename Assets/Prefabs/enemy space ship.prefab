@@ -711,10 +711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9c8d5d584b89c4bab755b61b9d5673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxHealth: 3
-  enemySpeed: 5
-  fireRate: 1.5
-  delay: 1
+  enemyMaxHealth: 2
+  enemySpeed: 4
+  fireRate: 1
+  delay: 0.5
   enemyShotEffect: {fileID: 1320877486945746388}
   enemyBolt: {fileID: 8991670224133746439, guid: 7e573e4ac8d0b4344a1c538431ba808e, type: 3}
   enemyShotSpawn: {fileID: 2455919782174510755}
@@ -723,7 +723,7 @@ MonoBehaviour:
   tilt: 2
   xBoundary: 9.5
   xPadding: 2
-  maneuverSmoothTime: 0.2
+  maneuverSmoothTime: 0.5
 --- !u!114 &6459837966467348676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8384fd0b24d4f4e94e6945280a7e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!4 &2276487885702610358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fc7085ff17958a4f9ed615bba177588, type: 3}

@@ -33,12 +33,10 @@ public class ModuleCard : MonoBehaviour
     private void OnSelect()
     {
         PlayerModule.instance.GetComponent<PlayerModule>().AddModule(currentInstance.module);
-        R.instance.moduleSelectionPanel.SetActive(false);
-
-        Time.timeScale = 1f;
-        PlayerController.instance.expirenceBar.StopRainbow();
-        PlayerController.instance.LevelUp();
         Inventory.instance.AddItemInInventoryOnUI();
+
+        PlayerController.instance.expirenceBar.StopRainbow();
         PlayerController.instance.magnetArea.GetComponent<Magnet>().gameObject.SetActive(true);
+        Time.timeScale = 1f;
     }
 }

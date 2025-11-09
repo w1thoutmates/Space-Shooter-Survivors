@@ -12,11 +12,17 @@ public class R : MonoBehaviour
     public GameObject bolt;
     public GameObject asteroid;
     public GameObject[] pickups;
+    public GameObject[] hits;
     public GameObject shield;
-    public GameObject expirence;
+    public GameObject simpleExpirence;
+    public GameObject modifiedExpirence;
     public GameObject levelUpText;
     public GameObject moduleCard;
     public GameObject enemySpaceShip;
+    public GameObject hitEffect;
+    public GameObject playerModel;
+    public GameObject playerExplosionEffect;
+    public GameObject chest;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
