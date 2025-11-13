@@ -5,12 +5,13 @@ public class ChestSpawner : MonoBehaviour
 {
     public static ChestSpawner instance;
 
-    public float minZ = 0f;
+
+    public float minZ = -2f;
     public float maxZ = 6f;
-    public float spawnX = -10f;
-    public float xBoundary = 1.5f;
-    public float startDelay = 0.5f;
-    public float timeBtwSpawns = 1f;
+    public float spawnX = -22f;
+    public float xBoundary = 12f;
+    public float startDelay = 22f;
+    public float timeBtwSpawns = 5f;
 
     [HideInInspector] public bool isOnRightSpawned = false;
 

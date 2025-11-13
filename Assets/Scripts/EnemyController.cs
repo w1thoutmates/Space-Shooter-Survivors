@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         enemyCurrentHealth = enemyMaxHealth;
-        targetZ = Random.Range(4f, 8.5f);
+        targetZ = Random.Range(6f, 10f);
 
         InvokeRepeating("Fire", delay, fireRate);
     }

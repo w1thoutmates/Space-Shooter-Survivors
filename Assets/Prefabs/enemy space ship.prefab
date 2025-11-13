@@ -539,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fc7085ff17958a4f9ed615bba177588, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.8531046
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fc7085ff17958a4f9ed615bba177588, type: 3}
       propertyPath: m_LocalPosition.y
@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fc7085ff17958a4f9ed615bba177588, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fc7085ff17958a4f9ed615bba177588, type: 3}
       propertyPath: m_LocalRotation.w
@@ -721,7 +721,7 @@ MonoBehaviour:
   enemyMuzzleLight: {fileID: 3343868049477475370}
   tr: {fileID: 3029119740101697226}
   tilt: 2
-  xBoundary: 9.5
+  xBoundary: 12.5
   xPadding: 2
   maneuverSmoothTime: 0.5
 --- !u!114 &6459837966467348676
