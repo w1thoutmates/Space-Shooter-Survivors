@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
 
     public void AddScore(float value)
     {
-        PlayerController.instance.score += value;
+        PlayerController.instance.score += (value * PlayerController.instance.scoreMultiplier);
         UpdateScoreText(PlayerController.instance.score);
     }
 

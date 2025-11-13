@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float playerMaxHealth;
     [HideInInspector] public float playerCurrentHealth;
     [HideInInspector] public float score;
+    [HideInInspector] public float scoreMultiplier = 1.0f;
     public float luck;
     public float difficulty = 0.15f;
     [HideInInspector] public float magnetBonus;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private float invincibilityCounter;
     private float flashCounter;
 
+    // нужно сделать Action который нужно добавить в Инвентарь игрока и нужно подписываться на него в onEnable PlayerController (onInventoryChanged)
 
     private void Awake()
     {
