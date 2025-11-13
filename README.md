@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Space Shooter Survivors
 
 **Space Shooter Survivors** - это смесь жанров *Space Shooter* и *Survivor-like* (в духе *Vampire Survivors* или *Megabonk*).  
@@ -73,6 +72,3 @@
 **Space Shooter Survivors** - инди-проект в активной разработке.  
 Автор: *Денис*  
 Движок: *Unity 6 (6000.0.39f1)*  
-=======
-# Space Shooter Survivors
->>>>>>> 94c1c35 (Добавьте файлы проекта.)
