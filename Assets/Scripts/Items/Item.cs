@@ -39,8 +39,7 @@ public class ItemInstance
 
     public void Add(int amount)
     {
-        if (!item.isStackable) return;
-        count = Mathf.Min(count + amount, item.maxStackSize);
+        count += amount;
     }
 
     public void Remove(int amount)
