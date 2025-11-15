@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        if ((Input.GetButton("Fire1") || Input.GetKey(KeyCode.E)) && Time.time > nextFire) {
+        if ((Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space)) && Time.time > nextFire) {
             R.instance.shotEffect.Play();
             StartMuzzleFlash();
             nextFire = Time.time + fireRate;
@@ -102,6 +102,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
             GainExp(maxExp);
+
+        if (Input.GetKeyDown(KeyCode.K))
+            GameController.instance.AddScore(250);
 
         if(invincibilityCounter > 0)
         {

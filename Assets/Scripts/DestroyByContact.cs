@@ -15,7 +15,7 @@ public class DestroyByContact : MonoBehaviour
 
         if(other.tag == "bolt")
         {
-            var enemy = GetComponent<EnemyController>();
+            var enemy = GetComponent<Enemy>();
 
             GameObject hitEffect;
 

@@ -25,14 +25,6 @@ public class GameController : MonoBehaviour
         StartCoroutine(SpawnWaves());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _SpawnEnemy(R.instance.enemySpaceShip, _GetSpawnPosition(), _GetSpawnRotation());
-        }
-    }
-
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startDelay);
@@ -42,7 +34,12 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < asteroidCount; i++)
             {
                 _SpawnWave();
-                _SpawnEnemy(R.instance.enemySpaceShip, _GetSpawnPosition(), _GetSpawnRotation());
+
+                GameObject enemyPf;
+                if (PlayerController.instance.score < 1200) enemyPf = R.instance.UFOEnemySpaceShip;
+                else enemyPf = R.instance.enemySpaceShip;
+
+                _SpawnEnemy(enemyPf, _GetSpawnPosition(), _GetSpawnRotation());
                 _SpawnPickup(R.instance.pickups[Random.Range(0, R.instance.pickups.Length)], _GetSpawnPosition(), _GetSpawnRotation());
                 yield return new WaitForSeconds(Random.Range(0.5f, spawnDelay));
             }

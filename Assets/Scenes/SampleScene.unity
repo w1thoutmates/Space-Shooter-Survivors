@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
@@ -2197,6 +2197,7 @@ MonoBehaviour:
   levelUpText: {fileID: 6227546474029941072, guid: 1f4b07c03b88d1241bf0653f7b36cbe6, type: 3}
   moduleCard: {fileID: 5317957917898180298, guid: 768ece071aac1754591976b08ac8ea25, type: 3}
   enemySpaceShip: {fileID: 1503187457053091596, guid: 93c27757dbafa6544abf3c246c8f9b5b, type: 3}
+  UFOEnemySpaceShip: {fileID: 609165057759926356, guid: 590b24519e4d68049b31024f330514f0, type: 3}
   hitEffect: {fileID: 1280240331523082, guid: 45ae5851ef2832044bba82850372d67b, type: 3}
   playerModel: {fileID: 786952877}
   playerExplosionEffect: {fileID: 1587261729604890, guid: 600ec83cba1cec448bf41a6607229741, type: 3}
@@ -2214,6 +2215,10 @@ MonoBehaviour:
   levelText: {fileID: 360319915}
   moduleSelectionPanel: {fileID: 861046683}
   playerShotSpawn: {fileID: 89660539}
+  xMin: -12.5
+  xMax: 12.5
+  zMin: -6.5
+  zMax: 18.7
 --- !u!4 &1214114613
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class R : MonoBehaviour
     public GameObject levelUpText;
     public GameObject moduleCard;
     public GameObject enemySpaceShip;
+    public GameObject UFOEnemySpaceShip;
     public GameObject hitEffect;
     public GameObject playerModel;
     public GameObject playerExplosionEffect;
@@ -42,6 +43,12 @@ public class R : MonoBehaviour
 
     [Header("Transforms")]
     public Transform playerShotSpawn;
+
+    [Header("Boundary values")]
+    public float xMin;
+    public float xMax;
+    public float zMin;
+    public float zMax;
 
 
     private void Start()
