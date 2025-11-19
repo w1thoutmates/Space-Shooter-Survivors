@@ -24,6 +24,8 @@ public class R : MonoBehaviour
     public GameObject playerModel;
     public GameObject playerExplosionEffect;
     public GameObject chest;
+    public GameObject itemImg;
+    public Item testItem;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
@@ -40,6 +42,8 @@ public class R : MonoBehaviour
     public Image ebFillImage;
     public TextMeshProUGUI levelText;
     public GameObject moduleSelectionPanel;
+    public GameObject itemInventoryUI;
+    public HorizontalLayoutGroup itemInventoryLayout;
 
     [Header("Transforms")]
     public Transform playerShotSpawn;

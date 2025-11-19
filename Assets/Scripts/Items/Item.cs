@@ -17,8 +17,7 @@ public abstract class Item : ScriptableObject
     public ItemQuality quality;
     public string description;
     public Sprite icon;
-    public int stackLevel = 0;
-    public int maxStackSize = 99;
+    [HideInInspector] public int maxStackSize = 99;
     public bool isStackable = true;
 
     public abstract void Use(PlayerController player, int stackLevel);

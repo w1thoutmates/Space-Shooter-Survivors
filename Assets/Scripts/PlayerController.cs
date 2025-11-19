@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
     private float invincibilityCounter;
     private float flashCounter;
 
-    // нужно сделать Action который нужно добавить в Инвентарь игрока и нужно подписываться на него в onEnable PlayerController (onInventoryChanged)
 
     private void Awake()
     {
@@ -61,6 +60,16 @@ public class PlayerController : MonoBehaviour
         else 
             Destroy(gameObject);
     }
+
+    //private void OnEnable()
+    //{
+    //    ItemInventory.instance.OnInventoryChanged += RecalculateStats;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    ItemInventory.instance.OnInventoryChanged -= RecalculateStats;
+    //}
 
     void Start()
     {
@@ -323,5 +332,10 @@ public class PlayerController : MonoBehaviour
             baseMagnetScale.y + magnetBonus + pickupMagnetBonus,
             baseMagnetScale.z + magnetBonus + pickupMagnetBonus
         );
+    }
+
+    public void RecalculateStats()
+    {
+
     }
 }

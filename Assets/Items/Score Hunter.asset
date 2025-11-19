@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd301a2dd27e8734883f18b939a54e45, type: 3}
+  m_Name: Score Hunter
+  m_EditorClassIdentifier: 
+  itemName: Score Hunter
+  quality: 0
+  description: Increase score that player gets.
+  icon: {fileID: 21300000, guid: 7ea9d3e70a02f074485a9d35ef8c9a4d, type: 3}
+  stackLevel: 0
+  maxStackSize: 99
+  isStackable: 1
+  scoreMultiplierBonus: 0.2
