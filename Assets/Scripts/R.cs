@@ -25,7 +25,9 @@ public class R : MonoBehaviour
     public GameObject playerExplosionEffect;
     public GameObject chest;
     public GameObject itemImg;
-    public Item testItem;
+    public Item[] items;
+    public GameObject attackDrone;
+    public GameObject defenseDrone;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;

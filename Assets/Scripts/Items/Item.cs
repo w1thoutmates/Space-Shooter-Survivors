@@ -21,6 +21,7 @@ public abstract class Item : ScriptableObject
     public bool isStackable = true;
 
     public abstract void Use(PlayerController player, int stackLevel);
+    public virtual void OnRemove(PlayerController player, int stackLevel) { }
 
 }
 

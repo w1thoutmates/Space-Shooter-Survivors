@@ -85,7 +85,15 @@ public class ItemInventory : MonoBehaviour
         if (inst == null)
             return;
 
+        // remove item from UI
+
         inst.Remove(amount);
+
+        for (int i = 0; i < amount; i++)
+        {
+            item.OnRemove(PlayerController.instance, inst.count);
+        }
+
         if (inst.count <= 0)
         {
             items.Remove(inst);
