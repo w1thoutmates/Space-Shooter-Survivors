@@ -62,15 +62,13 @@ public class DroneController : MonoBehaviour
             Transform droneT = spawnedDrones[i].transform;
 
             float currentDroneAngle = globalAngle + (angleStep * i);
-
             float angleRad = currentDroneAngle * Mathf.Deg2Rad;
 
             Vector3 offset = new Vector3(Mathf.Cos(angleRad), 0, Mathf.Sin(angleRad)) * radius;
             Vector3 targetPosition = transform.position + offset;
 
             float dist = Vector3.Distance(droneT.position, targetPosition);
-            float t = Mathf.Clamp01(dist / radius);
-            float dynamicSmooth = Mathf.Lerp(60f, 10f, t);
+            float dynamicSmooth = Mathf.Lerp(60f, smoothTime, Mathf.Clamp01(dist / radius));
 
             droneT.position = Vector3.Lerp(droneT.position, targetPosition, Time.deltaTime * dynamicSmooth);
             droneT.rotation = Quaternion.Lerp(droneT.rotation, Quaternion.Euler(0f, 90f, 0f), Time.deltaTime * dynamicSmooth);

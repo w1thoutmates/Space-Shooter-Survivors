@@ -7,6 +7,8 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+public enum PlayerMoveState { Stay, Moving }
+
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
@@ -51,7 +53,10 @@ public class PlayerController : MonoBehaviour
     private bool isChoosingModule;
     private float invincibilityCounter;
     private float flashCounter;
+    private PlayerMoveState playerMoveState;
 
+    private PlayerMoveState moveState = PlayerMoveState.Stay;
+    public PlayerMoveState MoveState => moveState;
 
     private void Awake()
     {
@@ -138,23 +143,29 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        rb.rotation = Quaternion.Euler(
-            0f,
-            180f,
-            rb.linearVelocity.x * tilt); 
+        if (Mathf.Abs(moveHorizontal) > 0.01f || Mathf.Abs(moveVertical) > 0.01f)
+            moveState = PlayerMoveState.Moving;
+        else
+            moveState = PlayerMoveState.Stay;
+
+        if (moveState == PlayerMoveState.Moving)
+        {
+            float tiltAngle = rb.linearVelocity.x * tilt;
+            rb.rotation = Quaternion.Euler(0f, 180f, tiltAngle);
+        }
+        else
+        {
+            rb.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
 
         Vector3 move = new Vector3(moveHorizontal, 0f, moveVertical) * speed;
         rb.linearVelocity = move;
 
         Vector3 viewPos = cam.WorldToViewportPoint(rb.position);
-
         viewPos.x = Mathf.Clamp(viewPos.x, 0.05f, 0.95f);
         viewPos.y = Mathf.Clamp(viewPos.y, 0.05f, 0.95f);
-
-        Vector3 targetPos = cam.ViewportToWorldPoint(new Vector3(viewPos.x, viewPos.y, viewPos.z));
-        rb.position = targetPos;
-
-        rb.position = new Vector3(rb.position.x, 0f, rb.position.z);
+        Vector3 targetPos = cam.ViewportToWorldPoint(viewPos);
+        rb.position = new Vector3(targetPos.x, 0f, targetPos.z);
     }
 
     public void TakeDamage(float value)
