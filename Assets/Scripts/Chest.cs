@@ -40,12 +40,14 @@ public class Chest : MonoBehaviour
         }
     }
 
-    public void Open()
+    public IEnumerator Open()
     {
         anim.SetBool("isOpening", true);
 
         ItemInventory.instance.Add(R.instance.items[Random.Range(0, R.instance.items.Length)], 1);
-
+        BoxCollider collider = GetComponent<BoxCollider>();
+        collider.enabled = false;
+        yield return new WaitForSeconds(1.8f);
         Destroy(gameObject);
         // items selection
     }
@@ -53,6 +55,6 @@ public class Chest : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            Open();
+            StartCoroutine(Open());
     }
 }

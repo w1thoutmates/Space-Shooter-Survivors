@@ -44,6 +44,8 @@ public class ModuleCard : MonoBehaviour
         moduleNameText.text = module.name;
         levelText.text = "lv." + instance.currentLevel;
 
+        // выдавать качество при SetModule а не в PlayerController.
+
         string currentBonusText = module.GetBonusText(instance.currentLevel);
         string nextBonusText = module.GetBonusText(instance.currentLevel + 1);
 
@@ -56,6 +58,7 @@ public class ModuleCard : MonoBehaviour
     private void OnSelect()
     {
         PlayerModule.instance.GetComponent<PlayerModule>().AddModule(currentInstance.module);
+        // в зависимости от качества модуля изменять прибавляемый бонус модуля
         Inventory.instance.AddItemInInventoryOnUI();
 
         PlayerController.instance.expirenceBar.StopRainbow();
@@ -136,3 +139,19 @@ public class ModuleCard : MonoBehaviour
         }
     }
 }
+
+public static class ModuleQualityMultiplier
+{
+    private static readonly Dictionary<ModuleQuality, float> multipliers =
+        new Dictionary<ModuleQuality, float>()
+        {
+            { ModuleQuality.Common,    1.00f },  // 100%
+            { ModuleQuality.Uncommon,  1.10f },  // 110%
+            { ModuleQuality.Rare,      1.20f },  // 120%
+            { ModuleQuality.Epic,      1.40f },  // 140%
+            { ModuleQuality.Legendary, 2.00f }   // 200%
+        };
+
+    public static float Get(ModuleQuality q) => multipliers[q];
+}
+
