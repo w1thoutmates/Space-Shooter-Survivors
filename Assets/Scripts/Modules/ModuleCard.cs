@@ -44,7 +44,18 @@ public class ModuleCard : MonoBehaviour
         moduleNameText.text = module.name;
         levelText.text = "lv." + instance.currentLevel;
 
-        // выдавать качество при SetModule а не в PlayerController.
+        bool isNew = !PlayerModule.instance.HasModule(module);
+
+        if (isNew)
+        {
+            fillImage.color = new Color(51f / 255f, 49f / 255f, 50f / 255f, 1f); // #333132
+            iconFillImage.color = new Color(114f / 255f, 129f / 255f, 134f / 255f, 1f); // #728186
+        }
+        else
+        {
+            var quality = RollQuality();
+            UpdateFillColorDependsOnQuality(quality);
+        }
 
         string currentBonusText = module.GetBonusText(instance.currentLevel);
         string nextBonusText = module.GetBonusText(instance.currentLevel + 1);

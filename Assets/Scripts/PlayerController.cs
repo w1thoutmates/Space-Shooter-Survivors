@@ -294,19 +294,6 @@ public class PlayerController : MonoBehaviour
 
             Modules instance = PlayerModule.instance.GetInstance(module);
             card.SetModule(instance);
-
-            bool isNew = !PlayerModule.instance.HasModule(module);
-
-            if (isNew)
-            {
-                card.fillImage.color = new Color(51f / 255f, 49f / 255f, 50f / 255f, 1f); // #333132
-                card.iconFillImage.color = new Color(114f / 255f, 129f / 255f, 134f / 255f, 1f); // #728186
-            }
-            else
-            {
-                var cardQuality = card.RollQuality();
-                card.UpdateFillColorDependsOnQuality(cardQuality);
-            }
         }
 
         R.instance.moduleSelectionPanel.SetActive(true);
