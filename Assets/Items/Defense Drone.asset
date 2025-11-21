@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defense Drone
   m_EditorClassIdentifier: 
   itemName: Defense Drone
-  quality: 0
+  quality: 2
   description: ' Summons a drone that protects you from enemy fire.'
   icon: {fileID: 21300000, guid: f722b207e4f3b3d4fa75833c392f81c4, type: 3}
   maxStackSize: 99

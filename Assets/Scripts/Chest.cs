@@ -45,6 +45,8 @@ public class Chest : MonoBehaviour
         anim.SetBool("isOpening", true);
 
         ItemInventory.instance.Add(R.instance.items[Random.Range(0, R.instance.items.Length)], 1);
+
+        Destroy(gameObject);
         // items selection
     }
 

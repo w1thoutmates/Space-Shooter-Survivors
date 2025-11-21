@@ -73,4 +73,15 @@ public class PlayerModule : MonoBehaviour
 
         return new Modules { module = module, currentLevel = 0 };
     }
+
+    public bool HasModule(Module m)
+    {
+        foreach (var inst in ownedModules)
+        {
+            if (inst.module == m)
+                return true;
+        }
+        return false;
+    }
+
 }
