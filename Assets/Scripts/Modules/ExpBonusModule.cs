@@ -4,18 +4,20 @@ using UnityEngine;
 public class ExpBonusModule : Module
 {
     public float expGainBonus = 0.1f;
-    public override void Apply(PlayerController player, int level)
+    public override void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float totalBonus = expGainBonus * level;
+        float baseBonus = expGainBonus * level;
+        float totalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
 
-        player.expMultiplier = player.expMultiplier + totalBonus;
+        player.expMultiplier += totalBonus;
     }
 
-    public override string GetBonusText(int level)
+    public override string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float bonus = (expGainBonus * 100f) * level;
+        float baseBonus = (expGainBonus * 100f) * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
 
-        return $"{bonus:F2}%";
+        return $"{finalBonus:F2}%";
 
     }
 }

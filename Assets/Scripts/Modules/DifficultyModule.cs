@@ -4,15 +4,19 @@ using UnityEngine;
 public class DifficultyModule : Module
 {
     public float difficultBonus = 0.5f;
-    public override void Apply(PlayerController player, int level)
+    public override void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float totalBonus = difficultBonus * level;
-        player.difficulty = player.luck + totalBonus;
+        float baseBonus = difficultBonus * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        player.difficulty += finalBonus;
     }
 
-    public override string GetBonusText(int level)
+    public override string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float bonus = (difficultBonus * 100f) * level;
-        return $"{bonus:F2}%";
+        float baseBonus = (difficultBonus * 100f) * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        return $"{finalBonus:F2}%";
     }
 }

@@ -53,9 +53,11 @@ public class ModuleCard : MonoBehaviour
         }
         else
         {
-            var quality = RollQuality();
-            UpdateFillColorDependsOnQuality(quality);
+            moduleQuality = RollQuality();
+            UpdateFillColorDependsOnQuality(moduleQuality);
         }
+
+        instance.quality = moduleQuality;
 
         string currentBonusText = module.GetBonusText(instance.currentLevel);
         string nextBonusText = module.GetBonusText(instance.currentLevel + 1);
@@ -156,11 +158,11 @@ public static class ModuleQualityMultiplier
     private static readonly Dictionary<ModuleQuality, float> multipliers =
         new Dictionary<ModuleQuality, float>()
         {
-            { ModuleQuality.Common,    1.00f },  // 100%
-            { ModuleQuality.Uncommon,  1.10f },  // 110%
-            { ModuleQuality.Rare,      1.20f },  // 120%
-            { ModuleQuality.Epic,      1.40f },  // 140%
-            { ModuleQuality.Legendary, 2.00f }   // 200%
+            { ModuleQuality.Common,    1.00f },
+            { ModuleQuality.Uncommon,  1.10f },
+            { ModuleQuality.Rare,      1.20f },
+            { ModuleQuality.Epic,      1.40f },
+            { ModuleQuality.Legendary, 2.00f }
         };
 
     public static float Get(ModuleQuality q) => multipliers[q];

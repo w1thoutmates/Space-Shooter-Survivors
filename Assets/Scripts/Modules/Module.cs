@@ -5,6 +5,7 @@ public class Modules
 {
     public Module module;
     public int currentLevel;
+    public ModuleQuality quality;
 }
 
 public abstract class Module : ScriptableObject
@@ -18,7 +19,7 @@ public abstract class Module : ScriptableObject
     [HideInInspector] public float totalBonus;
     [HideInInspector] public float currentBonus;
 
-    public abstract void Apply(PlayerController player, int level);
+    public abstract void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common);
 
-    public abstract string GetBonusText(int level);
+    public abstract string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common);
 }

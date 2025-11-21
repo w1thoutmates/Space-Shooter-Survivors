@@ -4,15 +4,21 @@ using UnityEngine;
 public class MoveSpeedModule : Module
 {
     public float moveSpeedBonus = 0.1f;
-    public override void Apply(PlayerController player, int level)
+    public override void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float totalBonus = 1f + moveSpeedBonus * level;
-        player.speed = player.baseSpeed * totalBonus;
+        float baseBonus = moveSpeedBonus * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        player.speedMult += finalBonus;
+        player.speed = player.baseSpeed * (1f + player.speedMult);
+
     }
 
-    public override string GetBonusText(int level)
+    public override string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float bonus = (moveSpeedBonus * 100f) * level;
-        return $"{bonus:F2}%";
+        float baseBonus = (moveSpeedBonus * 100f) * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        return $"{finalBonus:F2}%";
     }
 }

@@ -5,17 +5,23 @@ public class HpModule : Module
 {
     public float healthPerLevel = 1f;
 
-    public override void Apply(PlayerController player, int level)
+    public override void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float previousTotal = healthPerLevel * (level - 1);
-        float bonusToAdd = healthPerLevel * level - previousTotal;
+        float baseBonus = healthPerLevel * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
 
-        player.playerMaxHealth += bonusToAdd;
-        player.playerCurrentHealth += bonusToAdd;
+        player.playerMaxHealth += finalBonus;
+        player.playerCurrentHealth += finalBonus;
 
         player.healthBar.SetMaxHealth(player.playerMaxHealth);
         player.healthBar.SetHealth(player.playerCurrentHealth);
     }
 
-    public override string GetBonusText(int level) => (healthPerLevel * level).ToString();
+    public override string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common)
+    {
+        float baseBonus = (healthPerLevel * level);
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        return $"{finalBonus:F2}";
+    }
 }

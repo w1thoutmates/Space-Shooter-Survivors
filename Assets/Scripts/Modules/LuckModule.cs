@@ -4,15 +4,19 @@ using UnityEngine;
 public class LuckModule : Module
 {
     public float luckBonus = 0.5f;
-    public override void Apply(PlayerController player, int level)
+    public override void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float totalBonus = luckBonus * level;
-        player.luck = player.luck + totalBonus;
+        float baseBonus = luckBonus * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        player.difficulty += finalBonus;
     }
 
-    public override string GetBonusText(int level)
+    public override string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common)
     {
-        float bonus = (luckBonus * 100f) * level;
-        return $"{bonus:F2}%";
+        float baseBonus = (luckBonus * 100f) * level;
+        float finalBonus = baseBonus * ModuleQualityMultiplier.Get(quality);
+
+        return $"{finalBonus:F2}%";
     }
 }

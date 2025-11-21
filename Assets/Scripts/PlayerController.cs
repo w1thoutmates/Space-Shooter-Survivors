@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float pickupMagnetBonus = 0;
     public float speed = 10f;
     [HideInInspector] public float baseSpeed;
+    [HideInInspector] public float speedMult = 1f;
     public float fireRate = 0.5f;
     [HideInInspector] public float baseFireRate;
+    [HideInInspector] public float totalAtkSpeedMultiplier = 1f;
     [HideInInspector] public float nextFire = 0.0f;
     [HideInInspector] public float level = 1;
     public float currentExp;
