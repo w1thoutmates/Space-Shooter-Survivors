@@ -6,6 +6,7 @@ public class Modules
     public Module module;
     public int currentLevel;
     public ModuleQuality quality;
+    public float totalBonus;
 }
 
 public abstract class Module : ScriptableObject
@@ -15,11 +16,16 @@ public abstract class Module : ScriptableObject
     public Sprite icon;
 
     public string typeOfBonusText;
+    public float bonusPerLevel;
+    public bool isPercentage;
 
-    [HideInInspector] public float totalBonus;
-    [HideInInspector] public float currentBonus;
+    public abstract void Apply(PlayerController player, ModuleQuality quality);
 
-    public abstract void Apply(PlayerController player, int level, ModuleQuality quality = ModuleQuality.Common);
-
-    public abstract string GetBonusText(int level, ModuleQuality quality = ModuleQuality.Common);
+    public virtual string FormatBonus(float value)
+    {
+        if (isPercentage)
+            return $"{(value * 100f):F2}%";
+        else
+            return $"{value:F2}";
+    }
 }

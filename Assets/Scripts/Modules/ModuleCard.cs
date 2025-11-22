@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -39,30 +39,35 @@ public class ModuleCard : MonoBehaviour
     {
         currentInstance = instance;
         Module module = instance.module;
-
         iconImage.sprite = module.icon;
         moduleNameText.text = module.name;
-        levelText.text = "lv." + instance.currentLevel;
 
         bool isNew = !PlayerModule.instance.HasModule(module);
 
         if (isNew)
         {
-            fillImage.color = new Color(51f / 255f, 49f / 255f, 50f / 255f, 1f); // #333132
-            iconFillImage.color = new Color(114f / 255f, 129f / 255f, 134f / 255f, 1f); // #728186
+            moduleQuality = ModuleQuality.Common; 
+            instance.quality = ModuleQuality.Common; 
+            levelText.text = "New";
+            fillImage.color = new Color(51f / 255f, 49f / 255f, 50f / 255f, 1f);
+            iconFillImage.color = new Color(114f / 255f, 129f / 255f, 134f / 255f, 1f);
+            qualityText.text = "";
         }
         else
         {
             moduleQuality = RollQuality();
+            instance.quality = moduleQuality; 
+            levelText.text = "Lv." + instance.currentLevel;
             UpdateFillColorDependsOnQuality(moduleQuality);
+            qualityText.text = moduleQuality.ToString();
         }
 
-        instance.quality = moduleQuality;
+        float currentTotal = instance.totalBonus;
+        float nextIncrement = module.bonusPerLevel * ModuleQualityMultiplier.Get(moduleQuality);
+        string currentText = module.FormatBonus(currentTotal);
+        string nextText = module.FormatBonus(currentTotal + nextIncrement);
 
-        string currentBonusText = module.GetBonusText(instance.currentLevel);
-        string nextBonusText = module.GetBonusText(instance.currentLevel + 1);
-
-        bonusText.text = $"<color=#F2FF56>{module.typeOfBonusText}</color>: <color=\"Grey\">{currentBonusText}</color> -> <color=\"Green\">{nextBonusText}</color>";
+        bonusText.text = $"<color=#F2FF56>{module.typeOfBonusText}</color>: <color=\"Grey\">{currentText}</color> -> <color=\"Green\">{nextText}</color>";
 
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(() => OnSelect());
@@ -71,7 +76,6 @@ public class ModuleCard : MonoBehaviour
     private void OnSelect()
     {
         PlayerModule.instance.GetComponent<PlayerModule>().AddModule(currentInstance.module);
-        // в зависимости от качества модуля изменять прибавляемый бонус модуля
         Inventory.instance.AddItemInInventoryOnUI();
 
         PlayerController.instance.expirenceBar.StopRainbow();
@@ -79,11 +83,6 @@ public class ModuleCard : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void Start()
-    {
-        //moduleQuality = RollQuality();
-        //UpdateFillColorDependsOnQuality(moduleQuality);
-    }
 
     public ModuleQuality RollQuality() 
     {
@@ -122,8 +121,6 @@ public class ModuleCard : MonoBehaviour
     {
         switch(quality)
         {
-            // new Module color: fillImage.color = new Color(51f, 49f, 50f, 255f); // #333132
-
             case ModuleQuality.Common: 
                 fillImage.color = new Color(5f / 255f, 32f / 255f, 15f / 255f, 1f); // #05200F
                 iconFillImage.color = new Color(34f / 255f, 141f / 255f, 77f / 255f, 1f); // #228D4D

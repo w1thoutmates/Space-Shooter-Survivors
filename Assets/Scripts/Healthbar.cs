@@ -20,12 +20,34 @@ public class Healthbar : MonoBehaviour
         UpdateHB();
     }
 
-    void UpdateHB()
+    private void UpdateHB()
     {
         if (R.instance.hbFillImage != null && maxHealth > 0)
         {
             R.instance.hbFillImage.fillAmount = currentHealth / maxHealth;
-            R.instance.healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+            UpdateText();
+        }
+    }
+
+    private void UpdateText()
+    {
+        if (R.instance.healthText == null) return;
+
+        if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+        {
+            R.instance.healthText.text = $"{currentHealth:F1}/{maxHealth:F1}";
+        }
+        else
+        {
+            R.instance.healthText.text = $"{Mathf.RoundToInt(currentHealth)}/{Mathf.RoundToInt(maxHealth)}";
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (R.instance.healthText != null)
+        {
+            UpdateText();
         }
     }
 }

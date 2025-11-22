@@ -52,17 +52,29 @@ public class PlayerModule : MonoBehaviour
     public void AddModule(Module module)
     {
         Modules instance = ownedModules.Find(m => m.module == module);
+        if (instance == null && ownedModules.Count < maxModules)
+        {
+            instance = new Modules
+            {
+                module = module,
+                currentLevel = 1,
+                totalBonus = 0f,
+                quality = ModuleQuality.Common 
+            };
+            ownedModules.Add(instance);
 
-        if (instance != null)
+            float bonusThisUpgrade = module.bonusPerLevel * ModuleQualityMultiplier.Get(ModuleQuality.Common);
+            instance.totalBonus += bonusThisUpgrade;
+            module.Apply(PlayerController.instance, ModuleQuality.Common);
+        }
+        else if (instance != null)
         {
             instance.currentLevel++;
-            module.Apply(PlayerController.instance, instance.currentLevel);
-        }
-        else if (ownedModules.Count < maxModules)
-        {
-            instance = new Modules { module = module, currentLevel = 1 };
-            ownedModules.Add(instance);
-            module.Apply(PlayerController.instance, instance.currentLevel);
+
+            float bonusThisUpgrade = module.bonusPerLevel * ModuleQualityMultiplier.Get(instance.quality);
+            instance.totalBonus += bonusThisUpgrade;
+
+            module.Apply(PlayerController.instance, instance.quality);
         }
     }
 
@@ -71,7 +83,7 @@ public class PlayerModule : MonoBehaviour
         Modules instance = ownedModules.Find(m => m.module == module);
         if (instance != null) return instance;
 
-        return new Modules { module = module, currentLevel = 0 };
+        return new Modules { module = module, currentLevel = 0, totalBonus = 0f };
     }
 
     public bool HasModule(Module m)
