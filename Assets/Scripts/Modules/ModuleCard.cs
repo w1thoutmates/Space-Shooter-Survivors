@@ -28,8 +28,8 @@ public class ModuleCard : MonoBehaviour
     {
         { ModuleQuality.Common, 0.3f },
         { ModuleQuality.Uncommon, 0.15f },
-        { ModuleQuality.Rare, 0.05f },
-        { ModuleQuality.Epic, 0.01f },
+        { ModuleQuality.Rare, 0.1f },
+        { ModuleQuality.Epic, 0.1f },
         { ModuleQuality.Legendary, 0f }
     };
 
@@ -51,7 +51,7 @@ public class ModuleCard : MonoBehaviour
             levelText.text = "New";
             fillImage.color = new Color(51f / 255f, 49f / 255f, 50f / 255f, 1f);
             iconFillImage.color = new Color(114f / 255f, 129f / 255f, 134f / 255f, 1f);
-            qualityText.text = "";
+            qualityText.text = "New";
         }
         else
         {
@@ -119,32 +119,37 @@ public class ModuleCard : MonoBehaviour
 
     public void UpdateFillColorDependsOnQuality(ModuleQuality quality)
     {
-        switch(quality)
+        switch (quality)
         {
             case ModuleQuality.Common: 
                 fillImage.color = new Color(5f / 255f, 32f / 255f, 15f / 255f, 1f); // #05200F
                 iconFillImage.color = new Color(34f / 255f, 141f / 255f, 77f / 255f, 1f); // #228D4D
                 qualityText.text = quality.ToString();
+                qualityText.color = new Color(69f / 255f, 231 / 255f, 134 / 255f, 1f); // #45E786
                 break;
             case ModuleQuality.Uncommon:
                 fillImage.color = new Color(1f / 255f, 34f / 255f, 51f / 255f, 1f); // #012233
                 iconFillImage.color = new Color(7f / 255f, 93f / 255f, 133f / 255f, 1f); // #075D85 
                 qualityText.text = quality.ToString();
+                qualityText.color = new Color(33f / 255f, 151f / 255f, 207f / 255f, 1f); // #2197CF
                 break;
             case ModuleQuality.Rare:
                 fillImage.color = new Color(51f / 255f, 0f / 255f, 51f / 255f, 1f); // #330033
                 iconFillImage.color = new Color(143f / 255f, 3f / 255f, 135f / 255f, 1f); // #8F0387
                 qualityText.text = quality.ToString();
+                qualityText.color = new Color(204f / 255f, 27f / 255f, 194f / 255f, 1f); // #CC1BC2
                 break;
             case ModuleQuality.Epic:
                 fillImage.color = new Color(35f / 255f, 5f / 255f, 7f / 255f, 1f); // #230507
                 iconFillImage.color = new Color(143f / 255f, 24f / 255f, 14f / 255f, 1f); // #8F180E
                 qualityText.text = quality.ToString();
+                qualityText.color = new Color(209f / 255f, 49f / 255f, 36f / 255f, 1f); // #D13124
                 break;
             case ModuleQuality.Legendary:
                 fillImage.color = new Color(72f / 255f, 62f / 255f, 1f / 255f, 1f); // #483E01
                 iconFillImage.color = new Color(241f / 255f, 223f / 255f, 13f / 255f, 1f); // #F1DF0D
                 qualityText.text = quality.ToString();
+                qualityText.color = new Color(255f / 255f, 240f / 255f, 69f / 255f, 1f); // #FFF045
                 break;
         }
     }

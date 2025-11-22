@@ -16,6 +16,5 @@ MonoBehaviour:
   description: Increase player's health
   icon: {fileID: 21300000, guid: f90b2d116d4d542428b8573b0f92830b, type: 3}
   typeOfBonusText: Hp bonus
-  totalBonus: 0
-  currentBonus: 0
-  healthPerLevel: 1
+  bonusPerLevel: 1
+  isPercentage: 0

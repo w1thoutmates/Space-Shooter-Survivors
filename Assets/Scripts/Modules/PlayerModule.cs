@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,20 +22,23 @@ public class PlayerModule : MonoBehaviour
     public List<Module> GetModuleChoices()
     {
         List<Module> choices = new List<Module>();
-
-        List<Module> newModules = allModules.FindAll(m =>
-            !ownedModules.Exists(inst => inst.module == m));
+        List<Module> newModules = allModules.FindAll(m => m != null && !ownedModules.Exists(inst => inst.module == m)); 
 
         List<Module> availableModules = new List<Module>();
-
         if (ownedModules.Count >= maxModules || newModules.Count == 0)
         {
-            foreach (var inst in ownedModules) availableModules.Add(inst.module);
+            foreach (var inst in ownedModules)
+            {
+                if (inst.module != null) availableModules.Add(inst.module); 
+            }
         }
         else
         {
-            availableModules.AddRange(newModules);
-            foreach (var inst in ownedModules) availableModules.Add(inst.module);
+            availableModules.AddRange(newModules.Where(m => m != null));
+            foreach (var inst in ownedModules)
+            {
+                if (inst.module != null) availableModules.Add(inst.module);
+            }
         }
 
         while (choices.Count < 3 && availableModules.Count > 0)
@@ -42,9 +46,8 @@ public class PlayerModule : MonoBehaviour
             int index = Random.Range(0, availableModules.Count);
             Module selected = availableModules[index];
             availableModules.RemoveAt(index);
-            choices.Add(selected);
+            if (selected != null) choices.Add(selected); 
         }
-
         return choices;
     }
 
@@ -80,10 +83,16 @@ public class PlayerModule : MonoBehaviour
 
     public Modules GetInstance(Module module)
     {
+        if (module == null)
+        {
+            Debug.LogError("GetInstance called with null module!");
+            return null; 
+        }
+
         Modules instance = ownedModules.Find(m => m.module == module);
         if (instance != null) return instance;
 
-        return new Modules { module = module, currentLevel = 0, totalBonus = 0f };
+        return new Modules { module = module, currentLevel = 0, totalBonus = 0f, quality = ModuleQuality.Common }; 
     }
 
     public bool HasModule(Module m)
