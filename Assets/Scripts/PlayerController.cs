@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         R.instance.levelText.text = "lv." + level.ToString();
     }
 
-    public void Update()
+    private void Update()
     {
         if (Time.time > nextFire)
         { // (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space)) && 
@@ -117,13 +117,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(R.instance.bolt, R.instance.playerShotSpawn.position, R.instance.playerShotSpawn.rotation);
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-            GainExp(maxExp);
-
-        if (Input.GetKeyDown(KeyCode.K))
-            GameController.instance.AddScore(250);
-
-        if(invincibilityCounter > 0)
+        if (invincibilityCounter > 0)
         {
             invincibilityCounter -= Time.deltaTime;
 
@@ -141,7 +135,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -348,8 +342,19 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-    public void RecalculateStats()
-    {
 
+    // Debug
+    /*
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+            GainExp(maxExp);
+
+        if (Input.GetKeyDown(KeyCode.K))
+            GameController.instance.AddScore(250);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+            SuppliesSystem.instance.SpawnSupply();
     }
+    */
 }

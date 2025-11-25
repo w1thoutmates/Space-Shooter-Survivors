@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameController : MonoBehaviour
     public float spawnDelay;
     public float waveDelay;
     public float startDelay;
+
+    public float spawningSuppliesDelay = 120f;
 
     private void Awake()
     {
@@ -23,6 +26,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnWaves());
+        StartCoroutine(SuppliesSystem.instance.SpawnSuppliesCoroutine(spawningSuppliesDelay));
     }
 
     IEnumerator SpawnWaves()

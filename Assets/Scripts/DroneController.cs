@@ -23,11 +23,11 @@ public class DroneController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            ItemInventory.instance.Add(R.instance.items[1]);
+        //if (Input.GetKeyDown(KeyCode.P))
+        //    ItemInventory.instance.Add(R.instance.items[1]);
 
-        if (Input.GetKeyDown(KeyCode.O))
-            ItemInventory.instance.Add(R.instance.items[2]);
+        //if (Input.GetKeyDown(KeyCode.O))
+        //    ItemInventory.instance.Add(R.instance.items[2]);
     }
 
     void LateUpdate()

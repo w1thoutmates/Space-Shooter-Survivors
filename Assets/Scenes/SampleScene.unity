@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 199852776933532510, guid: 02c317ecc4c3a484d980337358151369, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -654,7 +658,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_sharedMaterial: {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -978,6 +983,7 @@ MonoBehaviour:
   spawnDelay: 1
   waveDelay: 5
   startDelay: 1.5
+  spawningSuppliesDelay: 120
 --- !u!1 &598478899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2379,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 465f32f75bc67804485be44693ebd0cf, type: 2}
   attackDrone: {fileID: 2533897919772244350, guid: 855a741fac99e7d4c9c3da1fefbf898c, type: 3}
   defenseDrone: {fileID: 2533897919772244350, guid: f78bcd4068d085547b1502d4320208f1, type: 3}
+  supply: {fileID: 2083024742122605733, guid: 2e8641513df98e44ab3db61fb1a81672, type: 3}
   explosionAsteroid: {fileID: 1981774452263784, guid: 4e19371f43812044389be8538ddac949, type: 3}
   lazerRayHit: {fileID: 1256001557233130, guid: 2dd0bdb7830e6644da169b32252dca96, type: 3}
   pickupEffect: {fileID: 1256001557233130, guid: 394c15b8f20f68a4c9b4b006df4e529f, type: 3}
@@ -2468,7 +2475,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_sharedMaterial: {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -2766,8 +2774,10 @@ MonoBehaviour:
   pickupMagnetBonus: 0
   speed: 10
   baseSpeed: 0
+  speedMult: 1
   fireRate: 0.3
   baseFireRate: 0
+  totalAtkSpeedMultiplier: 1
   nextFire: 0
   level: 0
   currentExp: 0
@@ -3091,7 +3101,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_sharedMaterial: {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 755488670379880633, guid: 8fac3303f19fb7d4fb1985a2b9199e52, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3553,6 +3564,53 @@ MonoBehaviour:
   magnetForce: 10
   maxSpeed: 20
   pickupDistance: 1
+--- !u!1 &1866191181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866191183}
+  - component: {fileID: 1866191182}
+  m_Layer: 0
+  m_Name: SupplySystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866191182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866191181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc4aebceca42a24fb7e50e1899262ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnX: 10
+  spawnZ: 2.5
+  spawnY: 8
+--- !u!4 &1866191183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866191181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2017654916
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,3 +4207,4 @@ SceneRoots:
   - {fileID: 436180782}
   - {fileID: 1214114613}
   - {fileID: 1130384480}
+  - {fileID: 1866191183}

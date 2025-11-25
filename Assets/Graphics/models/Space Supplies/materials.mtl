@@ -1,0 +1,8 @@
+# Made in Blockbench 5.0.4
+newmtl m_1e87a6fd-d098-c2cf-d2f8-d04f9f756bfc
+map_Kd body.png
+newmtl m_229c9532-b757-de8b-14ce-df0c6de18fb2
+map_Kd wing.png
+newmtl m_50cebc26-108a-3880-f98f-553d228528db
+map_Kd antenna.png
+newmtl none

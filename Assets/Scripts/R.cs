@@ -28,6 +28,7 @@ public class R : MonoBehaviour
     public Item[] items;
     public GameObject attackDrone;
     public GameObject defenseDrone;
+    public GameObject supply;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
