@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4fcbc5e4cfd604cbee45734991629c, type: 3}
   m_Name: HpModule
   m_EditorClassIdentifier: 
-  name: Health UP module
+  name: Health UP Module
   description: Increase player's health
-  icon: {fileID: 21300000, guid: f90b2d116d4d542428b8573b0f92830b, type: 3}
+  icon: {fileID: 1817038864, guid: b2be97c87ae74e24ea39f9bc0cf8994c, type: 3}
   typeOfBonusText: Hp bonus
   bonusPerLevel: 1
   isPercentage: 0

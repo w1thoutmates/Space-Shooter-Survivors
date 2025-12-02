@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61eab9108884fd64aa25efe410db7061, type: 3}
-  m_Name: AtkSpeedModule
+  m_Script: {fileID: 11500000, guid: 02a05b349c915504493978678f08b979, type: 3}
+  m_Name: MoveSpeedModule
   m_EditorClassIdentifier: 
-  name: Attack speed Module
-  description: Increase player's attack speed in %s
-  icon: {fileID: 1307085776, guid: b2be97c87ae74e24ea39f9bc0cf8994c, type: 3}
-  typeOfBonusText: Atk speed bonus
+  name: Move speed Module
+  description: Increase player's move speed
+  icon: {fileID: 1974911218, guid: b2be97c87ae74e24ea39f9bc0cf8994c, type: 3}
+  typeOfBonusText: Move speed bonus
   bonusPerLevel: 0.05
   isPercentage: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Luck Module
   description: Increase player's chanse to spawn powerups(pickups)
-  icon: {fileID: 21300000, guid: 294f05a470aa081489f6e99b8b113c43, type: 3}
+  icon: {fileID: 194518193, guid: b2be97c87ae74e24ea39f9bc0cf8994c, type: 3}
   typeOfBonusText: Luck bonus
   bonusPerLevel: 0.05
   isPercentage: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044ac11490e039e46ae2730db10727b2, type: 3}
   m_Name: ExpBonusModule
   m_EditorClassIdentifier: 
-  name: Bonus expirence module
+  name: Bonus expirence Module
   description: Increase player's claimed expirence
-  icon: {fileID: 21300000, guid: 865b05d3786bfd2479ef97683d07b5b7, type: 3}
+  icon: {fileID: -1208035002, guid: b2be97c87ae74e24ea39f9bc0cf8994c, type: 3}
   typeOfBonusText: Exp gain bonus
   bonusPerLevel: 0.1
   isPercentage: 1
