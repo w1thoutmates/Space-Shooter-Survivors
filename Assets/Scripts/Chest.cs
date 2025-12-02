@@ -42,14 +42,18 @@ public class Chest : MonoBehaviour
 
     public IEnumerator Open()
     {
-        anim.SetBool("isOpening", true);
+        anim.SetBool("isDestroying", true);
 
-        ItemInventory.instance.Add(R.instance.items[Random.Range(0, R.instance.items.Length)], 1);
+        Item newItem = R.instance.items[Random.Range(0, R.instance.items.Length)];
+        OpenChest.instance.ShowAward(newItem);
+
         BoxCollider collider = GetComponent<BoxCollider>();
         collider.enabled = false;
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.55f);
+
+        Instantiate(R.instance.destroyingChestParticles, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
-        // items selection
     }
 
     public void OnTriggerEnter(Collider other)

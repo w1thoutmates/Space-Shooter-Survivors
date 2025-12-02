@@ -36,6 +36,8 @@ public class ReachZone : MonoBehaviour
             PlayerController.instance.GainExp(PlayerController.instance.maxExp);
             reachTimer = 0;
 
+            Instantiate(R.instance.destroyingChestParticles, transform.position, Quaternion.identity);
+
             var s = GetComponentInParent<Supply>();
 
             Destroy(s.gameObject);

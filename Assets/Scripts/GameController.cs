@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
 
     private void _SpawnWave()
     {
-        Instantiate(R.instance.asteroid, _GetSpawnPosition(), _GetSpawnRotation());
+        Instantiate(R.instance.asteroidVariants[Random.Range(0,R.instance.asteroidVariants.Length)], _GetSpawnPosition(), _GetSpawnRotation());
     }
 
     public void AddScore(float value)

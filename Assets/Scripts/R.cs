@@ -29,6 +29,8 @@ public class R : MonoBehaviour
     public GameObject attackDrone;
     public GameObject defenseDrone;
     public GameObject supply;
+    public GameObject[] asteroidVariants;
+    public GameObject destroyingChestParticles;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
