@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,6 @@ public class OpenChest : MonoBehaviour
     [Header("UI & Panel")]
     public GameObject chestOpenMenuPanel;
     public Image itemIconImage;
-    public Animator uiAnimator;
     public Button button;
 
     [Header("3D Presentation")]
@@ -35,6 +35,8 @@ public class OpenChest : MonoBehaviour
 
     public void ShowAward(Item itemData)
     {
+        AudioManager.instance.MuteMusicAndAddFilter();
+
         Time.timeScale = 0f;
 
         chestOpenMenuPanel.SetActive(true);
@@ -50,31 +52,57 @@ public class OpenChest : MonoBehaviour
         StartCoroutine(ResetChestState());
     }
 
-    IEnumerator ResetChestState()
+    private IEnumerator ResetChestState()
     {
         yield return null;
 
         anim.Play("ClosedChest", 0, 0f);
     }
 
-    IEnumerator OpenSequence(Item itemData)
+    private IEnumerator OpenSequence(Item itemData)
     {
         anim.Play("open", 0, 0f);
 
         yield return new WaitForSecondsRealtime(1.0f);
 
+        if (R.instance.lootEffect != null)
+        {
+            Transform glowRays = R.instance.lootEffect.transform.Find("TreasureChestGlowRays");
+            if (glowRays != null)
+            {
+                glowRays.gameObject.SetActive(true);
+                glowRays.GetComponent<ParticleSystem>().Play();
+            }
+        }
+
         itemIconImage.gameObject.SetActive(true);
+
+        var imageUI = itemIconImage.rectTransform.DOScale(1, 1.5f).From(0).SetEase(Ease.InOutQuart).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(2.0f);
+
+        if (R.instance.lootEffect != null)
+        {
+            foreach (Transform child in R.instance.lootEffect.transform)
+            {
+                if (child.name != "TreasureChestGlowRays")
+                {
+                    child.gameObject.SetActive(true);
+                    child.GetComponent<ParticleSystem>().Play();
+                }
+            }
+        }
 
         yield return new WaitForSecondsRealtime(2.0f);
 
         // Партиклы 
         // Звуковой эффект Flash/Pop
-        // Запустить Animator UI на itemIconImage (Trigger "ShowItem")
 
         ItemInventory.instance.Add(itemData, 1);
 
         CloseReward();
 
+        AudioManager.instance.RestoreMusicSettings();
     }
 
     public void CloseReward()
@@ -82,6 +110,15 @@ public class OpenChest : MonoBehaviour
         anim.gameObject.SetActive(false);
         chestOpenMenuPanel.SetActive(false);
         Time.timeScale = 1f;
+
+        if (R.instance.lootEffect != null)
+        {
+            foreach (Transform child in R.instance.lootEffect.transform)
+            {
+                child.gameObject.SetActive(false);
+                child.GetComponent<ParticleSystem>().Stop();
+            }
+        }
     }
 
     public void OnOpenButtonClick()

@@ -115,6 +115,8 @@ public class PlayerController : MonoBehaviour
             StartMuzzleFlash();
             nextFire = Time.time + fireRate;
             Instantiate(R.instance.bolt, R.instance.playerShotSpawn.position, R.instance.playerShotSpawn.rotation);
+
+            AudioManager.instance.PlaySFX(R.instance.laserShotSounds[Random.Range(0, R.instance.laserShotSounds.Length)], 0.025f);
         }
 
         if (invincibilityCounter > 0)
@@ -185,6 +187,8 @@ public class PlayerController : MonoBehaviour
             playerCurrentHealth -= value;
             healthBar.SetHealth(playerCurrentHealth);
 
+            AudioManager.instance.PlaySFX(R.instance.laserHitSound);
+
             invincibilityCounter = invincibilityLength;
 
             playerRenderer.enabled = false;
@@ -240,6 +244,7 @@ public class PlayerController : MonoBehaviour
                 moduleChoicesQueue.Enqueue(1); // добавление запроса на выбор модуля в очередь
                 expirenceBar.SetExp(currentExp);
                 expirenceBar.StartRainbow();
+                AudioManager.instance.PlaySFX(R.instance.levelupSound);
 
             }
             
@@ -293,6 +298,8 @@ public class PlayerController : MonoBehaviour
         }
 
         R.instance.moduleSelectionPanel.SetActive(true);
+
+        AudioManager.instance.MuteMusicAndAddFilter();
     }
 
     private void SpawnLevelUpText()

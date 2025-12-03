@@ -17,6 +17,7 @@ public class MagnetPickup : MonoBehaviour, IPickable
             megaMagnetCoroutine = null;
         }
 
+        AudioManager.instance.PlaySFX(R.instance.pickupSounds[Random.Range(0, R.instance.pickupSounds.Length)]);
         megaMagnetCoroutine = player.StartCoroutine(MegaMagnetCoroutine(player));
 
         Destroy(gameObject);

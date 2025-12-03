@@ -17,6 +17,7 @@ public class MedkitPickup : MonoBehaviour, IPickable
     public void OnPickup(PlayerController player)
     {
         Heal(player, healValue);
+        AudioManager.instance.PlaySFX(R.instance.pickupSounds[Random.Range(0, R.instance.pickupSounds.Length)]);
         Destroy(gameObject);
     }
 

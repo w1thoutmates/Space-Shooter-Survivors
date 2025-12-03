@@ -30,7 +30,6 @@ public class R : MonoBehaviour
     public GameObject defenseDrone;
     public GameObject supply;
     public GameObject[] asteroidVariants;
-    public GameObject destroyingChestParticles;
 
     [Header("VFX")]
     public GameObject explosionAsteroid;
@@ -39,6 +38,8 @@ public class R : MonoBehaviour
     public ParticleSystem shotEffect;
     public GameObject muzzlePoint;
     public Light muzzleLight;
+    public GameObject destroyingChestParticles;
+    public GameObject lootEffect;
 
     [Header("UI")]
     public Image hbFillImage;
@@ -50,6 +51,16 @@ public class R : MonoBehaviour
     public GameObject itemInventoryUI;
     public HorizontalLayoutGroup itemInventoryLayout;
 
+    [Header("Sounds")]
+    public AudioClip[] levelMusics;
+    public AudioClip[] laserShotSounds;
+    public AudioClip[] enemyLaserShotSounds;
+    public AudioClip levelupSound;
+    public AudioClip asteroidSmashSound;
+    public AudioClip explosionSound;
+    public AudioClip[] pickupSounds;
+    public AudioClip laserHitSound;
+
     [Header("Transforms")]
     public Transform playerShotSpawn;
 
@@ -59,6 +70,8 @@ public class R : MonoBehaviour
     public float zMin;
     public float zMax;
 
+    private int levelMusicIndex = 0;
+
 
     private void Start()
     {
@@ -66,6 +79,23 @@ public class R : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        PlayNextMusic();
+    }
+
+    private void LateUpdate()
+    {
+        if (!AudioManager.instance.musicSource.isPlaying)
+        {
+            PlayNextMusic();
+        }
+    }
+
+    private void PlayNextMusic()
+    {
+        AudioManager.instance.PlayMusic(levelMusics[levelMusicIndex]);
+
+        levelMusicIndex = (levelMusicIndex + 1) % levelMusics.Length;
     }
 
 }

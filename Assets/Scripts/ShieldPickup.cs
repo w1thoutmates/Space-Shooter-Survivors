@@ -16,6 +16,8 @@ public class ShieldPickup : MonoBehaviour, IPickable
         if (shield != null)
             shield.ActivateShield(shieldTime, flashingTime);
 
+        AudioManager.instance.PlaySFX(R.instance.pickupSounds[Random.Range(0, R.instance.pickupSounds.Length)]);
+
         Destroy(gameObject);
     }
 }

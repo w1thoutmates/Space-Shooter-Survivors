@@ -53,6 +53,7 @@ public class Chest : MonoBehaviour
 
         Instantiate(R.instance.destroyingChestParticles, transform.position, Quaternion.identity);
 
+        AudioManager.instance.PlaySFX(R.instance.explosionSound);
         Destroy(gameObject);
     }
 

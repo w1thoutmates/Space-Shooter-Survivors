@@ -9,6 +9,8 @@ public class DestroyByContact : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerController.instance.TakeDamage(1);
+            GameObject hitEffect = Instantiate(R.instance.lazerRayHit, other.transform.position, Quaternion.identity);
+            AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
             Destroy(gameObject);
             return;
         }
@@ -29,9 +31,11 @@ public class DestroyByContact : MonoBehaviour
                 {
                     Instantiate(R.instance.explosionAsteroid, transform.position, Quaternion.identity);
                     GameController.instance.AddScore(scoreValue);
+                    AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
                     Destroy(gameObject);
                 }
 
+                AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
                 Destroy(other.gameObject);
                 return;
             }
@@ -39,6 +43,7 @@ public class DestroyByContact : MonoBehaviour
             hitEffect = Instantiate(R.instance.lazerRayHit, other.transform.position, Quaternion.identity);
             var destroyEffect = Instantiate(R.instance.explosionAsteroid, other.transform.position, Quaternion.identity);
             GameController.instance.AddScore(scoreValue);
+            AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
             Destroy(other.gameObject);
             Destroy(gameObject);
         }

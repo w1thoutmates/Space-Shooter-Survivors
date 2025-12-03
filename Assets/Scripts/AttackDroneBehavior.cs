@@ -19,5 +19,6 @@ public class AttackDroneBehavior : MonoBehaviour
         //enemyShotEffect.Play();
         //StartMuzzleFlash();
         Instantiate(R.instance.bolt, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(R.instance.laserShotSounds[Random.Range(0, R.instance.laserShotSounds.Length)], 0.025f);
     }
 }

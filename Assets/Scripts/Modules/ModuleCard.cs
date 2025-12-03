@@ -81,6 +81,8 @@ public class ModuleCard : MonoBehaviour
         PlayerController.instance.expirenceBar.StopRainbow();
         PlayerController.instance.magnetArea.GetComponent<Magnet>().gameObject.SetActive(true);
         Time.timeScale = 1f;
+
+        AudioManager.instance.RestoreMusicSettings();
     }
 
 

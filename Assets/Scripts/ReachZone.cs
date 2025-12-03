@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ReachZone : MonoBehaviour
@@ -36,11 +37,7 @@ public class ReachZone : MonoBehaviour
             PlayerController.instance.GainExp(PlayerController.instance.maxExp);
             reachTimer = 0;
 
-            Instantiate(R.instance.destroyingChestParticles, transform.position, Quaternion.identity);
-
-            var s = GetComponentInParent<Supply>();
-
-            Destroy(s.gameObject);
+            StartCoroutine(DestroyTheSupply());
         }
     }
 
@@ -64,5 +61,16 @@ public class ReachZone : MonoBehaviour
             signalPS.GetComponent<ParticleSystem>().Play();
             signalPS.SetActive(true);
         }
+    }
+
+    private IEnumerator DestroyTheSupply()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(R.instance.destroyingChestParticles, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(R.instance.explosionSound);
+
+        var s = GetComponentInParent<Supply>();
+
+        Destroy(s.gameObject);
     }
 }

@@ -37,6 +37,7 @@ public abstract class Enemy : MonoBehaviour
         enemyShotEffect.Play();
         StartMuzzleFlash();
         Instantiate(enemyBolt, enemyShotSpawn.position, enemyShotSpawn.rotation);
+        AudioManager.instance.PlaySFX(R.instance.enemyLaserShotSounds[Random.Range(0, R.instance.laserShotSounds.Length)], 0.035f);
     }
 
     protected void StartMuzzleFlash()
