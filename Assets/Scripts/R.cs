@@ -60,6 +60,10 @@ public class R : MonoBehaviour
     public AudioClip explosionSound;
     public AudioClip[] pickupSounds;
     public AudioClip laserHitSound;
+    public AudioClip[] enemyDashSounds;
+    public AudioClip chestOpeningSound;
+    public AudioClip foundChestSound;
+    public AudioClip collectExpSound;
 
     [Header("Transforms")]
     public Transform playerShotSpawn;

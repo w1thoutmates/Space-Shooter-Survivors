@@ -15,8 +15,7 @@ MonoBehaviour:
   itemName: Score Hunter
   quality: 0
   description: Increase score that player gets.
-  icon: {fileID: 21300000, guid: 7ea9d3e70a02f074485a9d35ef8c9a4d, type: 3}
-  stackLevel: 0
+  icon: {fileID: 672179441, guid: 39e4747ac1899a542ae1e01b091a350e, type: 3}
   maxStackSize: 99
   isStackable: 1
   scoreMultiplierBonus: 0.2

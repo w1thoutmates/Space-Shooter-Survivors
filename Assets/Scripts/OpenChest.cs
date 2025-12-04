@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class OpenChest : MonoBehaviour
     [Header("UI & Panel")]
     public GameObject chestOpenMenuPanel;
     public Image itemIconImage;
+    public TextMeshProUGUI itemNameText;
     public Button button;
 
     [Header("3D Presentation")]
@@ -37,6 +39,8 @@ public class OpenChest : MonoBehaviour
     {
         AudioManager.instance.MuteMusicAndAddFilter();
 
+        AudioManager.instance.PlaySFX(R.instance.foundChestSound);
+
         Time.timeScale = 0f;
 
         chestOpenMenuPanel.SetActive(true);
@@ -63,6 +67,8 @@ public class OpenChest : MonoBehaviour
     {
         anim.Play("open", 0, 0f);
 
+        AudioManager.instance.PlaySFX(R.instance.chestOpeningSound);
+
         yield return new WaitForSecondsRealtime(1.0f);
 
         if (R.instance.lootEffect != null)
@@ -76,8 +82,12 @@ public class OpenChest : MonoBehaviour
         }
 
         itemIconImage.gameObject.SetActive(true);
+        itemNameText.gameObject.SetActive(true);
 
-        var imageUI = itemIconImage.rectTransform.DOScale(1, 1.5f).From(0).SetEase(Ease.InOutQuart).SetUpdate(true);
+        var imageUI = itemIconImage.rectTransform.DOScale(1.5f, 1.5f).From(0).SetEase(Ease.OutElastic).SetUpdate(true);
+
+        itemNameText.text = itemData.name.ToString();
+        var itemNameUI = itemNameText.gameObject.transform.DOScale(1f, 1.5f).From(0).SetEase(Ease.OutElastic).SetUpdate(true);
 
         yield return new WaitForSecondsRealtime(2.0f);
 
@@ -94,9 +104,6 @@ public class OpenChest : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(2.0f);
-
-        // Партиклы 
-        // Звуковой эффект Flash/Pop
 
         ItemInventory.instance.Add(itemData, 1);
 

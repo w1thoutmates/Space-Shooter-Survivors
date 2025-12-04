@@ -18,6 +18,8 @@ public class Expirence : MonoBehaviour
     {
         if(player == null || player.gameObject == null) return;
 
+        AudioManager.instance.PlaySFX(R.instance.collectExpSound, 0.015f);
+
         player.GainExp(_expAmount);
         Destroy(gameObject);
     }
