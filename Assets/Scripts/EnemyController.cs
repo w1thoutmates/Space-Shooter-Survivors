@@ -102,7 +102,7 @@ public class EnemyController : Enemy
 
         tr.emitting = true;
 
-        AudioManager.instance.PlaySFX(R.instance.enemyDashSounds[Random.Range(0, R.instance.enemyDashSounds.Length)]);
+        AudioManager.instance.PlaySFX(R.instance.enemyDashSounds[Random.Range(0, R.instance.enemyDashSounds.Length)], 0.05f);
 
         yield return new WaitForSeconds(1.4f);
 

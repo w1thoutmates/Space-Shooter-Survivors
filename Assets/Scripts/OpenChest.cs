@@ -43,6 +43,8 @@ public class OpenChest : MonoBehaviour
 
         Time.timeScale = 0f;
 
+        chestOpenMenuPanel.transform.DOScale(1f, 0.3f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
+
         chestOpenMenuPanel.SetActive(true);
 
         anim.gameObject.SetActive(true);
@@ -107,16 +109,49 @@ public class OpenChest : MonoBehaviour
 
         ItemInventory.instance.Add(itemData, 1);
 
-        CloseReward();
+        StartCoroutine(CloseReward());
 
         AudioManager.instance.RestoreMusicSettings();
     }
 
-    public void CloseReward()
+    public IEnumerator CloseReward()
     {
+        var images = chestOpenMenuPanel.GetComponentsInChildren<Image>();
+        var texts = chestOpenMenuPanel.GetComponentsInChildren<TextMeshProUGUI>();
+        var rawImage = chestOpenMenuPanel.GetComponentInChildren<RawImage>();
+
+        foreach (var image in images)
+        {
+            image.DOFade(0, 0.35f).SetUpdate(true);
+        }
+
+        foreach (var text in texts)
+        {
+            text.DOFade(0, 0.35f).SetUpdate(true);
+        }
+
+        rawImage.DOFade(0, 0.35f).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(0.4f);
+
         anim.gameObject.SetActive(false);
         chestOpenMenuPanel.SetActive(false);
         Time.timeScale = 1f;
+
+        foreach (var image in images)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+        }
+
+        foreach (var text in texts)
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+        }
+
+        if (rawImage != null)
+        {
+            rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1f);
+        }
 
         if (R.instance.lootEffect != null)
         {

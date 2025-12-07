@@ -11,7 +11,11 @@ public class SuppliesSystem : MonoBehaviour
     public float spawnZ = 2.5f;
     public float spawnY = 5.6f;
 
-    
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.L))
+    //        SpawnSupply();
+    //}
 
     private void Awake()
     {

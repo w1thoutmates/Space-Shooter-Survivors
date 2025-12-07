@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.LowLevelPhysics;
@@ -263,8 +265,9 @@ public class PlayerController : MonoBehaviour
     {
         isChoosingModule = true;
         R.instance.moduleSelectionPanel.SetActive(true);
+        R.instance.moduleSelectionPanel.transform.DOScale(1f, 0.35f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
 
-        while(moduleChoicesQueue.Count > 0)
+        while (moduleChoicesQueue.Count > 0)
         {
             moduleChoicesQueue.Dequeue(); // удалить обработанный случай из очереди
 
@@ -277,8 +280,26 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        var images = R.instance.moduleSelectionPanel.GetComponentsInChildren<UnityEngine.UI.Image>();
+        var text = R.instance.moduleSelectionPanel.GetComponentInChildren<TextMeshProUGUI>();
+
+        foreach(var image in images)
+        {
+            image.DOFade(0, 0.35f).SetUpdate(true);
+        }
+        text.DOFade(0, 0.35f).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(0.4f);
+
+        foreach (var image in images)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+        }
+
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+
         isChoosingModule = false;
-        R.instance.moduleSelectionPanel.SetActive(false);
+        R.instance.moduleSelectionPanel.SetActive(false);        
     }
 
     private void ShowModuleChoices()
