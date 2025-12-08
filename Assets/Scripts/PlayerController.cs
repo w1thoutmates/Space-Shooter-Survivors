@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float score;
     [HideInInspector] public float scoreMultiplier = 1.0f;
     public float luck;
+    [HideInInspector] public float baseLuck;
     public float difficulty = 0.15f;
+    [HideInInspector] public float baseDifficulty;
     [HideInInspector] public float magnetBonus;
     [HideInInspector] public float baseMagnetBonus;
     [HideInInspector] public float pickupMagnetBonus = 0;
@@ -36,8 +38,10 @@ public class PlayerController : MonoBehaviour
     public float currentExp;
     public float maxExp;
     public float expMultiplier = 1f;
+    public float healthRegen = 0.0f;
+    [HideInInspector] public float baseHealthRegen;
     public float invincibilityLength;
-    public float flashLength = 0.1f;
+    [HideInInspector] public float flashLength = 0.1f;
 
     [Header("Needed resources")]
     public Collider magnetArea;
@@ -88,6 +92,9 @@ public class PlayerController : MonoBehaviour
         baseSpeed = speed;
         baseFireRate = fireRate;
         baseMagnetBonus = magnetBonus;
+        baseDifficulty = difficulty;
+        baseHealthRegen = healthRegen;
+        baseLuck = luck;
 
         if (magnetArea != null)
         {
@@ -111,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Regenerate();
+
         if (Time.time > nextFire)
         { // (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space)) && 
             R.instance.shotEffect.Play();
@@ -265,7 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         isChoosingModule = true;
         R.instance.moduleSelectionPanel.SetActive(true);
-        R.instance.moduleSelectionPanel.transform.DOScale(1f, 0.35f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
+        R.instance.moduleSelectionPanel.transform.DOScale(1f, 0.2f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
 
         while (moduleChoicesQueue.Count > 0)
         {
@@ -285,11 +294,11 @@ public class PlayerController : MonoBehaviour
 
         foreach(var image in images)
         {
-            image.DOFade(0, 0.35f).SetUpdate(true);
+            image.DOFade(0, 0.1f).SetUpdate(true);
         }
-        text.DOFade(0, 0.35f).SetUpdate(true);
+        text.DOFade(0, 0.1f).SetUpdate(true);
 
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.15f);
 
         foreach (var image in images)
         {
@@ -368,6 +377,17 @@ public class PlayerController : MonoBehaviour
             baseMagnetScale.y + magnetBonus + pickupMagnetBonus,
             baseMagnetScale.z + magnetBonus + pickupMagnetBonus
         );
+    }
+
+    private void Regenerate()
+    {
+        if(playerCurrentHealth < playerMaxHealth)
+        {
+            float amountToAdd = healthRegen * Time.deltaTime;
+
+            playerCurrentHealth = Mathf.Min(playerCurrentHealth + amountToAdd, playerMaxHealth);
+            healthBar.SetHealth(playerCurrentHealth);
+        }
     }
 
 

@@ -11,8 +11,26 @@ public class DestroyByContact : MonoBehaviour
             PlayerController.instance.TakeDamage(1);
             GameObject hitEffect = Instantiate(R.instance.lazerRayHit, other.transform.position, Quaternion.identity);
             AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
-            Destroy(gameObject);
-            return;
+
+            var enemy = GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1);
+                if (enemy.IsDead())
+                {
+                    Instantiate(R.instance.explosionAsteroid, transform.position, Quaternion.identity);
+                    GameController.instance.AddScore(scoreValue);
+                    AudioManager.instance.PlaySFX(R.instance.asteroidSmashSound);
+                    Destroy(gameObject);
+                }
+                return;
+            }
+            else
+            { 
+                Destroy(gameObject);
+                return;
+            }
         }
 
         if(other.tag == "bolt")

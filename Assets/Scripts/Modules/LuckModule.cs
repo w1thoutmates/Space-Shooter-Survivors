@@ -8,5 +8,6 @@ public class LuckModule : Module
         float bonusThisUpgrade = bonusPerLevel * ModuleQualityMultiplier.Get(quality);
 
         player.luck += bonusThisUpgrade;
+        player.baseLuck += bonusThisUpgrade;
     }
 }

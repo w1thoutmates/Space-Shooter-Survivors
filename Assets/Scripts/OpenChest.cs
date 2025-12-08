@@ -38,15 +38,13 @@ public class OpenChest : MonoBehaviour
     public void ShowAward(Item itemData)
     {
         AudioManager.instance.MuteMusicAndAddFilter();
-
         AudioManager.instance.PlaySFX(R.instance.foundChestSound);
 
         Time.timeScale = 0f;
 
-        chestOpenMenuPanel.transform.DOScale(1f, 0.3f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
+        chestOpenMenuPanel.transform.DOScale(1f, 0.2f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
 
         chestOpenMenuPanel.SetActive(true);
-
         anim.gameObject.SetActive(true);
 
         selectedItem = itemData;
@@ -122,19 +120,20 @@ public class OpenChest : MonoBehaviour
 
         foreach (var image in images)
         {
-            image.DOFade(0, 0.35f).SetUpdate(true);
+            image.DOFade(0, 0.1f).SetUpdate(true);
         }
 
         foreach (var text in texts)
         {
-            text.DOFade(0, 0.35f).SetUpdate(true);
+            text.DOFade(0, 0.1f).SetUpdate(true);
         }
 
-        rawImage.DOFade(0, 0.35f).SetUpdate(true);
+        rawImage.DOFade(0, 0.1f).SetUpdate(true);
 
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.15f);
 
         anim.gameObject.SetActive(false);
+        itemNameText.gameObject.SetActive(false);
         chestOpenMenuPanel.SetActive(false);
         Time.timeScale = 1f;
 

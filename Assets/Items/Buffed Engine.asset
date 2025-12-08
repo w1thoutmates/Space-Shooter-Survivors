@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7660c1dae3fa6a54fbb5ac1376caeb44, type: 3}
-  m_Name: Defense Drone
+  m_Script: {fileID: 11500000, guid: ec44526ddde99e9409de0c94a8e1a1fd, type: 3}
+  m_Name: Buffed Engine
   m_EditorClassIdentifier: 
-  itemName: Defense Drone
-  quality: 2
-  description: Summons a drone that protects you from enemy fire.
-  icon: {fileID: -1512583492, guid: 39e4747ac1899a542ae1e01b091a350e, type: 3}
+  itemName: Buffed Engine
+  quality: 0
+  description: Increase player's move speed
+  icon: {fileID: 542041454, guid: f04feca9d8bef284980d62264a31ca6e, type: 3}
   maxStackSize: 99
   isStackable: 1
+  moveSpeedBonus: 0.1

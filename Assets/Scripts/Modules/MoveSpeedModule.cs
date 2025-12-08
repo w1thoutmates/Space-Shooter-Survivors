@@ -8,5 +8,6 @@ public class MoveSpeedModule : Module
         float bonusThisUpgrade = bonusPerLevel * ModuleQualityMultiplier.Get(quality);
 
         player.speed += bonusThisUpgrade;
+        player.baseSpeed += bonusThisUpgrade;
     }
 }

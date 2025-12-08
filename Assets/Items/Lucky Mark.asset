@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7660c1dae3fa6a54fbb5ac1376caeb44, type: 3}
-  m_Name: Defense Drone
+  m_Script: {fileID: 11500000, guid: f23ac06c60f04ca419c797ac81f59c22, type: 3}
+  m_Name: Lucky Mark
   m_EditorClassIdentifier: 
-  itemName: Defense Drone
-  quality: 2
-  description: Summons a drone that protects you from enemy fire.
-  icon: {fileID: -1512583492, guid: 39e4747ac1899a542ae1e01b091a350e, type: 3}
+  itemName: LUCK!
+  quality: 0
+  description: Increase player's luck
+  icon: {fileID: -1821823209, guid: f04feca9d8bef284980d62264a31ca6e, type: 3}
   maxStackSize: 99
   isStackable: 1
+  luckBonus: 0.05

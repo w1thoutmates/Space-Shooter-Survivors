@@ -8,5 +8,6 @@ public class DifficultyModule : Module
         float bonusThisUpgrade = bonusPerLevel * ModuleQualityMultiplier.Get(quality);
 
         player.difficulty += bonusThisUpgrade;
+        player.baseDifficulty += bonusThisUpgrade;
     }
 }

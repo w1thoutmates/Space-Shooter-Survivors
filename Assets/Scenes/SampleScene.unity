@@ -2178,7 +2178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2.5
   rotationSpeed: 50
-  smoothTime: 60
+  smoothTime: 200
 --- !u!1 &703470291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,9 +4010,13 @@ MonoBehaviour:
   chest: {fileID: 5311012305988860191, guid: 3f5622081442bf441813cdc66e03362b, type: 3}
   itemImg: {fileID: 5006959566388421651, guid: 86ea13ff74a22c44e84dac88e42d00e1, type: 3}
   items:
-  - {fileID: 11400000, guid: c1a2d0e72651ab94e96335f35e61c9e3, type: 2}
   - {fileID: 11400000, guid: 1eb7c400958cfa943b6345f15e3bc2e3, type: 2}
+  - {fileID: 11400000, guid: df72cbec0dfb6e64aac4f5d19542db07, type: 2}
+  - {fileID: 11400000, guid: cc22dcb0e85b72f448566d32eea06ddd, type: 2}
   - {fileID: 11400000, guid: 465f32f75bc67804485be44693ebd0cf, type: 2}
+  - {fileID: 11400000, guid: c1cb79579991ed2408012e1fd343a7b2, type: 2}
+  - {fileID: 11400000, guid: 24dc0a1e4f3d07547b1740af678aa6b7, type: 2}
+  - {fileID: 11400000, guid: c1a2d0e72651ab94e96335f35e61c9e3, type: 2}
   attackDrone: {fileID: 2533897919772244350, guid: 855a741fac99e7d4c9c3da1fefbf898c, type: 3}
   defenseDrone: {fileID: 2533897919772244350, guid: f78bcd4068d085547b1502d4320208f1, type: 3}
   supply: {fileID: 2083024742122605733, guid: 2e8641513df98e44ab3db61fb1a81672, type: 3}
@@ -4619,7 +4623,9 @@ MonoBehaviour:
   score: 0
   scoreMultiplier: 1
   luck: 0.1
+  baseLuck: 0
   difficulty: 0.15
+  baseDifficulty: 0
   magnetBonus: 0
   baseMagnetBonus: 0
   pickupMagnetBonus: 0
@@ -4634,6 +4640,8 @@ MonoBehaviour:
   currentExp: 0
   maxExp: 100
   expMultiplier: 1
+  healthRegen: 0
+  baseHealthRegen: 0
   invincibilityLength: 1
   flashLength: 0.1
   magnetArea: {fileID: 1863436131}
