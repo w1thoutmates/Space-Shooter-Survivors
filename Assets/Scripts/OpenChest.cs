@@ -17,6 +17,7 @@ public class OpenChest : MonoBehaviour
     [Header("3D Presentation")]
     public GameObject chest;
     public Animator anim;
+    public ChestPresentAnimator animatedObject;
 
     private Item selectedItem;
 
@@ -42,6 +43,7 @@ public class OpenChest : MonoBehaviour
 
         Time.timeScale = 0f;
 
+        animatedObject.PlayAppearingAnimation();
         chestOpenMenuPanel.transform.DOScale(1f, 0.2f).From(0.3f).SetEase(Ease.InQuad).SetUpdate(true);
 
         chestOpenMenuPanel.SetActive(true);

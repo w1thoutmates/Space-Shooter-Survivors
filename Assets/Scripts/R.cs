@@ -50,6 +50,7 @@ public class R : MonoBehaviour
     public GameObject moduleSelectionPanel;
     public GameObject itemInventoryUI;
     public HorizontalLayoutGroup itemInventoryLayout;
+    public GameObject circle;
 
     [Header("Sounds")]
     public AudioClip[] levelMusics;

@@ -307,13 +307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingSpeed: 40
   translatingSpeed: 1
-  spawnPositions:
-  - 0
-  - 6
-  xBoundary: 8
-  startDelay: 0.5
-  spawnDelay: 1
-  timeBtwSpawns: 1
   chest: {fileID: 5801165666106447215}
   anim: {fileID: 4676808567594619270}
 --- !u!1 &5416016045601190613

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -35,6 +36,8 @@ public class PlayerShield : MonoBehaviour
         isActive = true;
         activeShield = Instantiate(R.instance.shield, transform, false);
         activeShield.transform.localPosition = Vector3.zero;
+
+        activeShield.transform.DOScale(1f, 0.5f).From(0f).SetEase(Ease.InSine);
 
         float flashTimer = 0f;
 
